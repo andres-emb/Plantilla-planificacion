@@ -5,7 +5,7 @@
 
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
-\titulo{Título del proyecto} 
+\titulo{Streaming de audio embebido sobre Wi-Fi 6 para aplicaciones Drive Thru} 
 
 % Nombre del posgrado, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \degreename
 \posgrado{Carrera de Especialización en Sistemas Embebidos} 
@@ -16,22 +16,25 @@
 
 % Tu nombre, se puede usar el cualquier lugar del documento con el comando \authorname
 % IMPORTANTE: no omitir titulaciones ni tildación en los nombres, también se recomienda escribir los nombres completos (tal cual los tienen en su documento)
-\autor{Título y Nombre del autor}
+\autor{Ing. Andrés Urian Flórez}
 
 % El nombre del director y co-director, se puede usar el cualquier lugar del documento con el comando \supname y \cosupname y \pertesupname y \pertecosupname
-\director{Título y Nombre del director}
-\pertenenciaDirector{pertenencia} 
+\director{Esp. Ing. Federico Roux}
+\pertenenciaDirector{Globant} 
 \codirector{} % para que aparezca en la portada se debe descomentar la opción codirector en los parámetros de documentclass
 \pertenenciaCoDirector{FIUBA}
 
 % Nombre del cliente, quien va a aprobar los resultados del proyecto, se puede usar con el comando \clientename y \empclientename
-\cliente{Nombre del cliente}
-\empresaCliente{Empresa del cliente}
+\cliente{Jurado CESE}
+\empresaCliente{FIUBA}
  
-\fechaINICIO{30 de abril de 2023}		%Fecha de inicio de la cursada de GdP \fechaInicioName
-\fechaFINALPlan{18 de junio de 2023} 	%Fecha de final de cursada de GdP
-\fechaFINALTrabajo{15 de mayo de 2024}	%Fecha de defensa pública del trabajo final
+\fechaINICIO{28 de abril de 2026}		%Fecha de inicio de la cursada de GdP \fechaInicioName
+\fechaFINALPlan{16 de junio de 2026} 	%Fecha de final de cursada de GdP
+\fechaFINALTrabajo{20 de diciembre de 2026}	%Fecha de defensa pública del trabajo final
 
+
+\newcommand{\driveThru}{\textit{Drive Thru}}
+\newcommand{\orderPoint}{\textit{Order Point}}
 
 \begin{document}
 
@@ -59,7 +62,7 @@
 \rowcolor[HTML]{C0C0C0} 
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
 0      & Creación del documento                                 &\fechaInicioName \\ \hline
-%1      & Se completa hasta el punto 5 inclusive                & {día} de {mes} de 202X \\ \hline
+1      & Se completa hasta el punto 5 inclusive                & {10} de {mayo} de 2026 \\ \hline
 %2      & Se completa hasta el punto 9 inclusive
 %		  Se puede agregar algo más \newline
 %		  En distintas líneas \newline
@@ -85,7 +88,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en \textcolor{red}{la implementación de un prototipo de un sistema de control de temperatura de una caldera industrial}. El trabajo tendrá un presupuesto preliminar estimado de \textcolor{red}{600} horas y un costo estimado de \textcolor{red}{\$ XXX}, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
+Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en la implementación de un prototipo de un sistema de transmisión y recepción de audio. El trabajo tendrá un presupuesto preliminar estimado de 600 horas y un costo estimado de \$ 5.000 USD, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -101,149 +104,154 @@ Se adjunta a esta acta la planificación inicial.
 \end{table}
 
 
-
-
 \section{1. Descripción técnica-conceptual del proyecto a realizar}
 \label{sec:descripcion}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-El objetivo es que el lector, en una o dos páginas, exponga de qué se trata el proyecto y cuáles son sus desafíos, cuál es la motivación para realizarlo y su importancia.
+El presente proyecto es un emprendimiento personal orientado al desarrollo de sistemas embebidos para aplicaciones de comunicación de audio en tiempo real. Su propósito es atender las limitaciones presentes en los sistemas de comunicación utilizados por grandes cadenas de restaurantes en configuraciones \driveThru{} para la atención de clientes desde sus vehículos. Estos sistemas requieren una comunicación bidireccional clara, continua y de baja latencia entre el cliente y el operador del restaurante, ya que la eficiencia del servicio depende directamente de la rapidez y precisión con la que los pedidos se realizan y procesan.
 
-Se debe introducir el contexto del proyecto, el estado del arte en la temática, describir la propuesta de valor, cuál es el problema que atiende y cuál es la solución que se propone. Se debe dar una descripción funcional de la solución que incluya un diagrama en bloques.
+En la figura \ref{fig:driveThruView} se presenta una configuración típica de \driveThru{} en modalidad \textit{dual lane}. En este esquema el cliente se aproxima  al \orderPoint{} para realizar el pedido y posteriormente avanza por el \textit{lane} correspondiente hasta el punto de entrega de la orden.
 
-Puede ser útil incluir en esta sección la respuesta a alguna de estas preguntas:
+\begin{figure}[H]
+\centering 
+\includegraphics[width=0.65\textwidth]{./Figuras/driveThruView.png}
+\caption{Esquema de un \driveThru}
+\label{fig:driveThruView}
+\end{figure}
+
+Actualmente, la mayoría de las soluciones comerciales utilizadas en sistemas \driveThru{}, en particular las encargadas de la interacción entre el cliente y el personal del restaurante en el \orderPoint{}, utilizan sistemas operativos de propósito general (GPOS por sus siglas en ingles) para facilitar una rápida implementación e integración con las tecnologías de comunicación existente. Sin embargo, a medida que aumentan los requerimientos en cuanto a confiabilidad, las características de los GPOS presentan limitaciones asociadas a la calidad, ya que no están diseñados para ejecutar tareas con en un tiempo especifico lo cual afecta negativamente las aplicaciones de audio en tiempo real.
+
+Ante estas restricciones, la industria de \textit{Quick Service Restaurant} (QSR) ha empleado arquitecturas cableadas para la transmisión de datos mediante enlaces Ethernet. Este enfoque permite mantener niveles bajos de latencia y alta confiabilidad en la transmisión; no obstante, presenta limitaciones frente a los costos de instalación, mantenimiento, flexibilidad y escalabilidad de la infraestructura, lo que limita la innovación en el ecosistema.
+
+Teniendo en cuenta este panorama, las tecnologías inalambricas tradicionales, como Bluetooth o estándares antiguos de Wi-Fi, han sido descartadas en los ecosistemas \driveThru{} debido a que presentan dificultades en entornos con alta densidad de dispositivos o elevados niveles de interferencia electromagnética. Estas condiciones afectan negativamente las métricas críticas del sistema, como la latencia, el \textit{jitter} y la pérdida de paquetes. 
+
+A pesar de lo anterior, el desarrollo de nuevas tecnologías y estándares como Wi-Fi 6 (IEEE 802.11ax) han hecho posible que existan nuevas oportunidades para su uso en sistemas de transmisión de audio con restricciones estrictas de latencia. Esto se ha logrado gracias a la implementación de mecanismos que mejoran el uso de los canales de radio frecuencia en condiciones adversas, como \textit{Orthogonal Frequency Division Multiple Access} (OFDMA) y \textit{Multiple User, Multiple Input Multiple Output} (MU-MIMO).
+
+Bajo este contexto, el objetivo principal del proyecto es desarrollar una plataforma embebida de transmisión y recepción de audio en tiempo real, denominada \textit{Audio Streaming Platform} (ASP), orientada a aplicaciones \driveThru{}, particularmente en el segmento de \orderPoint{} referenciado en la figura \ref{fig:driveThruView}. Para ello, el sistema deberá transmitir audio bidireccional con una latencia cercana a los 100 ms, lo que permite una comunicación fluida entre el cliente y el operador del restaurante incluso en entornos con altos niveles de ruido ambiental, como aquellos ubicados cerca a vías de alto tráfico vehicular.
+
+La ASP utilizará \textit{Real-time Transport Protocol} (RTP) como protocolo de alto nivel y la transmisión de datos será sobre Wi-Fi 6, lo cual facilita la interoperabilidad con diferentes consumidores finales de audio como: operadores humanos, servicios en la nube o sistemas automatizados basados en inteligencia artificial. Adicionalmente, será posible configurar y administrar el dispositivo a través de MQTT y se utilizará la autenticación mutua basada en certificados (mTLS) para garantizar una conexión segura.
+
+En este sentido, la arquitectura general del sistema estará compuesta por los siguientes elementos:
 
 \begin{itemize}
-	\item ¿Cuál es el contexto del proyecto, es un emprendimiento personal, un proyecto para una empresa, es parte del programa de vinculación con empresas del posgrado?
-	\item ¿Existen o aplican condiciones especiales al proyecto, financiamiento de algún programa público o privado, acuerdos de confidencialidad, acuerdos sobre la propiedad intelectual de los entregables u otros?
-	\item ¿Cómo se compara la solución propuesta con el estado del arte en el campo de aplicación? ¿En qué aspectos destaca?
-	\item ¿Ayuda a la explicación si se incluye un lienzo Canvas del Modelo de Negocio?
-	\item ¿En qué estado del ciclo de vida está la solución que se propone?
-	\item ¿Cuáles son las características del cliente (el adoptante de los entregables del proyecto) qué valora, qué necesita?
-	\item ¿Por dónde pasa la innovación?
+\item Plataforma embebida ASP encargada de la captura, reproducción y transmisión de audio.
+\item Punto de acceso Wi-Fi 6 para la interconexión de los dispositivos.
+\item Unidad de procesamiento encargada de recibir y retransmitir el flujo de audio.
+\item Consumidor final del audio, que podrá corresponder a un operador humano o a un sistema automatizado.
 \end{itemize}
 
-La descripción técnica-conceptual \textbf{debe incluir al menos un diagrama en bloques del sistema} y descripción funcional de la solución propuesta.
-
-Las figuras se deben mencionar en el texto ANTES de que aparezcan con una frase como la siguiente: ``En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa que...''.  La regla es que las figuras nunca pueden ir antes de ser mencionadas en el texto, porque sino el lector no entiende por qué de pronto aparece una figura.
+En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques de la arquitectura general del sistema, en la cual la ASP establece una conexión inalámbrica con el punto de acceso Wi-Fi 6 y transmite el flujo de audio utilizando RTP hacia una unidad de procesamiento central, la cual deberá redirigir el audio hacia diferentes destinatarios. Para el desarrollo del prototipo se utilizará el kit de desarrollo \href{https://www.nordicsemi.com/Products/Development-hardware/nRF7002-DK}{nRF 7002 DK} que posee un chip dedicado a la interfaz Wi-Fi 6 y puede operar en 5 GHz o 2.4 GHz; en cuanto al desarrollo del software se empleará Zephyr RTOS.
 
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.65\textwidth]{./Figuras/diagBloques.png}
+\includegraphics[width=\textwidth]{./Figuras/asp.png}
 \caption{Diagrama en bloques del sistema.}
 \label{fig:diagBloques}
 \end{figure}
 
-\vspace{25px}
 
-El tamaño del texto en TODAS las figuras debe ser adecuado \textbf{para que NO pase lo que ocurre en la figura \ref{fig:diagBloques}}, donde el lector debe esforzarse para poder leer el texto. 
+Finalmente, la propuesta de valor del proyecto consiste en ofrecer una solución flexible y escalable para sistemas \textit{Drive Thru}, esto reduce la dependencia de una infraestructura cableada y facilita futuros cambios del sistema \driveThru{} a nivel físico. Además, el uso de protocolos estandarizados y tecnologías inalámbricas modernas mejora la interoperabilidad de la solución y habilita la integración futura con sistemas automatizados de atención al cliente.
 
-Los colores usados en el diagrama deben ser adecuados, tal que ayuden a comprender mejor el diagrama. Se recomienda evitar colores primarios (como rojo, verde o cyan) y usar la gama de colores pastel.
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 \section{2. Identificación y análisis de los interesados}
 \label{sec:interesados}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-\textbf{Nota importante:} borrar esto y todas las consignas en color rojo antes de entregar este documento). Esto se hace eliminando el par de comandos que forman el bloque consigna, \verb!\begin{consigna}{red}! y \verb!\end{consigna}{red}! del código. 
- 
-Es inusual que una misma persona esté en más de un rol, incluso en proyectos chicos. Si se considera que una persona cumple dos o más roles, entonces \textbf{solo dejarla en el rol más importante}. 
-
-Por ejemplo, si una persona es Cliente pero también colabora u orienta, dejarla solo como Cliente. Si una persona es el Responsable, \textbf{no debe ser colocado también como miembro del equipo}.
-
 
 \begin{table}[ht]
-%\caption{Identificación de los interesados}
-%\label{tab:interesados}
+\caption{Identificación de los interesados}
+\label{tab:interesados}
 \begin{tabularx}{\linewidth}{@{}|l|X|X|l|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
-Auspiciante   &                   &              	&        	\\ \hline
-Cliente       & \clientename      &\empclientename	&        	\\ \hline
-Impulsor      &                   &              	&        	\\ \hline
+Cliente       & \clientename      &\empclientename	& Jurado del CESE       	\\ \hline
 Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
-Colaboradores &                   &              	&        	\\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director del Trabajo Final \\ \hline
-Equipo        & miembro1 \newline 
-				miembro2          &              	&        	\\ \hline
-Opositores    &                   &              	&        	\\ \hline
-Usuario final &                   &              	&        	\\ \hline
+Usuario final & Operadores de sistemas Drive Thru & Restaurantes de comida rapida & Operador del sistema       	\\ \hline
 \end{tabularx}
 \end{table}
-
-El Director suele ser uno de los orientadores.
-
-No dejar celdas vacías; si no hay nada que poner en una celda colocar un signo ``-''.
-
-No dejar filas vacías; si no hay nada que poner en una fila entonces eliminarla.
-
-Es deseable listar a continuación las principales características de cada interesado.
  
-Por ejemplo:
+Características de los actores:
 \begin{itemize}
-	\item Orientador: la Dra. Ing. María Gómez es experta en la temática y va a ayudar con la definición de los requerimientos y el desarrollo del firmware del embebido.
-	\item Auspiciante: es riguroso y exigente con la rendición de gastos. Tener mucho cuidado con esto.
-	\item Equipo: Juan Perez, suele pedir licencia porque tiene un familiar con una enfermedad. Planificar considerando esto.
+	\item Responsable: El \authorname{} es el encargado del diseño de la arquitectura del sistema, desarrollo del firmware embebido y quien define los requerimientos funcionales y técnicos del sistema.
+	\item Orientador: El \supname{} es experto en el desarrollo e implementación de sistemas embebidos que utilizan Zephyr RTOS.
+	\item Usuario final: Son los operadores de sistemas \driveThru{} y requieren una solución que permita mantener una comunicación clara y continua con los clientes, minimizando interrupciones y tiempos de espera.
 \end{itemize}
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-
 
 \section{3. Propósito del proyecto}
 \label{sec:proposito}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-
-¿Por qué se hace el proyecto? ¿Qué se quiere lograr? 
-
-Se recomienda que sea solo un párrafo que continúe con la idea de la frase ``el propósito de este proyecto es...'' (omitir la frase, ya que está en el título de la sección).
-\end{consigna}
+Desarrollar una plataforma embebida de transmisión y recepción de audio en tiempo real orientada a sistemas \driveThru{}. En primer lugar, la solución busca garantizar la comunicación bidireccional de baja latencia y calidad de audio adecuada en entornos con altos niveles de ruido. En segundo lugar, pretende reducir la dependencia de infraestructura cableada tradicional al usar Wi-Fi 6 para la transmisión del audio. En tercer lugar, se validará la viabilidad técnica del uso de protocolos estandarizados como RTP y MQTT sobre arquitecturas embebidas, para brindar una solución flexible, escalable e interoperable.
 
 \section{4. Alcance del proyecto}
 \label{sec:alcance}
 
-\begin{consigna}{red}
-¿Qué se incluye y que no se incluye en este proyecto?
-
-Se refiere al trabajo que se va a hacer para entregar el producto o resultado especificado. 
-
-Explicitar todo lo quede comprendido dentro del alcance del proyecto. Por ejemplo:
-
 El proyecto incluye:
 \begin{itemize}
-	\item Ítem 1.
-	\item Ítem 2.
+	\item Desarrollo de un prototipo funcional de la plataforma ASP (Audio Streaming Platform) que usará como insumo el kit de desarrollo nRF7002 DK.
+	\item Implementación de transmisión de audio utilizando redes inalámbricas Wi-Fi 6 como medio principal de comunicación.
+	\item Uso del protocolo RTP para el envío y recepción de audio de 16 bits en tiempo real.
+	\item Desarrollo de firmware embebido para la captura, procesamiento y reproducción de audio.
+	\item Integración de mecanismos de configuración y administración remota mediante MQTT.
+	\item Autenticación mutua mediante certificados digitales (mTLS) para asegurar la comunicación MQTT.
+	\item Evaluación de las métricas del sistema bajo las siguientes condiciones simuladas:
 		\begin{itemize}
-		\item Subítem 1.
-		\item Subítem 2.
-		\item ...
+			\item Latencia de extremo a extremo.
+			\item Estabilidad de la transmisión.
+			\item Calidad del audio.
+			\item Comportamiento en entornos con interferencia y ruido.
 		\end{itemize}
-	\item ...
+	\item Documentación técnica del proyecto:
+		\begin{itemize}
+			\item Arquitectura de la solución.
+			\item Diseño del firmware.
+			\item Configuración de red.
+			\item Resultados de validación.
+		\end{itemize}
+	\item Implementación básica de un \textit{endpoint}  RTP para recibir y enviar audio al ASP.
+\end{itemize}
+El presente proyecto no incluye:
+\begin{itemize}
+	\item Desarrollo de hardware comercial definitivo.
+	\item Ejecución de algoritmos avanzados de cancelación de ruido.
+	\item Integración con plataformas comerciales de punto de venta (POS por sus siglas en ingles).
+	\item Desarrollo de aplicaciones móviles o interfaces gráficas avanzadas para administración del sistema.
+	\item Integración con servicios \textit{cloud} externos.
+	\item Desarrollo del componente de detección de presencia del cliente.
+	\item Validación del sistema en condiciones reales de operación.
 	
 \end{itemize}
 
-Explicitar además todo lo que no quede incluido (``El presente proyecto no incluye...'')
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 
 \section{5. Supuestos del proyecto}
 \label{sec:supuestos}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-``Para el desarrollo del presente proyecto se supone que: ...''
-
 \begin{itemize}
-	\item Supuesto 1.
-	\item Supuesto 2.
-	\item ...
+	\item Disponibilidad de tiempo:
+		\subitem El \authorname{} cuenta con una disponibilidad de 20 horas semanales para el desarrollo del proyecto dentro de un lapso de siete meses.
+		\subitem Se espera contar con la disponibilidad de \supname{} en la asesoría de consultas técnicas relacionadas con el desarrollo del firmware basado en Zephyr RTOS.
+		
+	\item Disponibilidad de recursos materiales:
+		\subitem Se dispone de un kit de desarrollo nRF7002 DK para el prototipado de la solución y sus correspondientes pruebas.
+		\subitem Se cuenta con acceso a herramientas de desarrollo adecuadas como computadoras, compiladores, depuradores y hardware de prueba.
+		\subitem Se dispone de un entorno adecuado para realizar las pruebas de concepto y validación de las métricas de la solución.
+		
+	\item Factibilidad técnica:
+		\subitem El SDK de Zephyr RTOS funciona de manera optima y cumple con los requisitos funcionales del proyecto.
+		\subitem La red local Wi-Fi tendrá un desempeño adecuado para la transmisión de audio bidireccional con baja latencia en el entorno de pruebas.
+		\subitem Los dispositivos embebidos seleccionados tendrán capacidad de procesamiento adecuada para ejecutar simultáneamente la captura, procesamiento, reproducción y transmisión de audio en tiempo real.
+		\subitem El protocolo RTP podrá implementarse de manera efectiva y sin afectar la latencia general del sistema.
+		\subitem La implementación de MQTT con mTLS será viable dentro de las restricciones de memoria y procesamiento del sistema embebido.
+		\subitem El sistema podrá alcanzar una latencia cercana a los 100 ms en condiciones normales de operación.
+		
+	\item Condiciones externas:
+		\subitem No existirán restricciones regulatorias que impidan el uso de redes Wi-Fi 6 y transmisión inalámbrica de audio en el entorno de desarrollo.
+		\subitem No se presentarán problemas de disponibilidad de componentes electrónicos o dispositivos necesarios para el prototipado.
+		\subitem El acceso a documentación técnica, SDKs y librerías necesarias para el desarrollo permanecerá disponible durante toda la ejecución del proyecto.
+		
 \end{itemize}
 
-Por ejemplo, se podrían incluir supuestos respecto a disponibilidad de tiempo y recursos humanos y materiales, sobre la factibilidad técnica de distintos aspectos del proyecto, sobre otras cuestiones que sean necesarias para el éxito del proyecto como condiciones macroeconómicas o reglamentarias.
 
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 \section{6. Requerimientos}
 \label{sec:requerimientos}
