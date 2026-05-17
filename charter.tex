@@ -140,7 +140,7 @@ En este sentido, la arquitectura general del sistema estará compuesta por los s
 \item Consumidor final del audio, que podrá corresponder a un operador humano o a un sistema automatizado.
 \end{itemize}
 
-En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques de la arquitectura general del sistema, en la cual la ASP establece una conexión inalámbrica con el punto de acceso Wi-Fi 6 y transmite el flujo de audio utilizando RTP hacia una unidad de procesamiento central, la cual deberá redirigir el audio hacia diferentes destinatarios. Para el desarrollo del prototipo se utilizará el kit de desarrollo \href{https://www.nordicsemi.com/Products/Development-hardware/nRF7002-DK}{nRF 7002 DK} que posee un chip dedicado a la interfaz Wi-Fi 6 y puede operar en 5 MHz o 2.4 MHz; en cuanto al desarrollo del software se empleará Zephyr RTOS.
+En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques de la arquitectura general del sistema, en la cual la ASP establece una conexión inalámbrica con el punto de acceso Wi-Fi 6 y transmite el flujo de audio utilizando RTP hacia una unidad de procesamiento central, la cual deberá redirigir el audio hacia diferentes destinatarios. Para el desarrollo del prototipo se utilizará el kit de desarrollo \href{https://www.nordicsemi.com/Products/Development-hardware/nRF7002-DK}{nRF 7002 DK} que posee un chip dedicado a la interfaz Wi-Fi 6 y puede operar en 5 GHz o 2.4 GHz; en cuanto al desarrollo del software se empleará Zephyr RTOS.
 
 \begin{figure}[htpb]
 \centering 
@@ -260,19 +260,19 @@ El presente proyecto no incluye:
 \begin{enumerate}
 	\item Requerimientos funcionales del ASP:
 		\begin{enumerate}
-			\item Realizar la transmisión bidireccional (\textit{full duplex} de audio sobre RTP.
+			\item Realizar la transmisión bidireccional (\textit{full duplex}) de audio sobre RTP.
 			\item Transmitir los datos a través de Wi-Fi 6.
 			\item Capturar audio desde un micrófono.
 			\item Reproducir audio en un parlante.			
 			\item Establecer la autenticación mutua (mTLS) al conectarse al broker MQTT.
 			\item Configurar los parámetros de operación a través de MQTT.
 			\item La configuración remota debe incluir:
-				\begin{enumerate}
+				\begin{itemize}
 					\item Identificador del dispositivo.
 					\item Dirección IP o nombre del broker MQTT.
 					\item Parámetros básicos de red.
 					\item Parámetros asociados al flujo RTP.
-				\end{enumerate}					
+				\end{itemize}					
 			\item Reintentar la conexión Wi-Fi si hay interrupciones.
 			\item Reintentar la conexión con el broker MQTT si hay interrupciones.
 			\item Registrar eventos básicos de funcionamiento para facilitar tareas de depuración.
@@ -376,7 +376,7 @@ En este sentido cada criterio tiene un valor entre 1 y 3, y el esfuerzo total de
 	\item Validación y documentación:
 	
 		\begin{enumerate}
-			\item Como desarrollador, quiero medir la latencia de extremo a extremo del sistema de una manera eficiente y escalabre para validar el cumplimiento de los requerimientos de tiempo real y garantizar que los cambios del software no afectan el desempeño del sistema. \storyPoints{}: 9 (relevancia 3, dificultad 3, incertidumbre 3).
+			\item Como desarrollador, quiero medir la latencia de extremo a extremo del sistema de una manera eficiente y escalable para validar el cumplimiento de los requerimientos de tiempo real y garantizar que los cambios del software no afecten el desempeño del sistema. \storyPoints{}: 9 (relevancia 3, dificultad 3, incertidumbre 3).
 			
 			\item Como desarrollador, quiero evaluar la calidad del audio transmitido en entornos ruidosos para verificar la inteligibilidad de la comunicación. \storyPoints{}: 5 (relevancia 2, dificultad 2, incertidumbre 1).
 			
@@ -409,11 +409,11 @@ En este sentido cada criterio tiene un valor entre 1 y 3, y el esfuerzo total de
 
 
 \begin{enumerate}
-	\item Planificación del proyecto (50 h):
+	\item Planificación del proyecto (60 h):
 		\begin{enumerate}
 			\item Definición requerimientos (10 h).
 			\item Definición plan de trabajo (10 h).
-			\item Elaboración del documento de planificación (30 h).
+			\item Elaboración del documento de planificación (40 h).
 		\end{enumerate}
 
 	\item Preparación del entorno de desarrollo (70 h):
@@ -425,13 +425,13 @@ En este sentido cada criterio tiene un valor entre 1 y 3, y el esfuerzo total de
 			\item Implementación básica de servidor RTP para pruebas de audio (30 h).
 		\end{enumerate}	
 	
-	\item Desarrollo del firmware (340 h):
+	\item Desarrollo del firmware (330 h):
 		\begin{enumerate}
 			\item Consulta de la documentación sobre Zephyr RTOS para el manejo de nRF 7002 DK (40 h).
 			\item Prueba de los ejemplos básicos del SDK para utilizar Wi-Fi (40 h).
 			\item Captura del audio desde un micrófono (20 h).
 			\item Reproducción de audio en un parlante (20 h).
-			\item Comunicación de datos sobre Wi-Fi 6 (30 h).
+			\item Comunicación de datos sobre Wi-Fi 6 (20 h).
 			\item Reconexión automática a red Wi-Fi (10 h).
 			\item Transmisión y recepción de audio sobre RTP (40 h).
 			\item Implementación de cliente MQTT embebido (10 h).
@@ -450,8 +450,7 @@ En este sentido cada criterio tiene un valor entre 1 y 3, y el esfuerzo total de
 			\item Medición de latencia extremo a extremo (10 h).
 			\item Estabilidad de conexión inalámbrica (5 h).
 			\item Recuperación automática de conexión (Wi-Fi, MQTT) (10 h).
-			\item Interferencia inalámbrica (5 h).
-			\item Comportamiento bajo carga de red (5 h).
+			\item Comportamiento bajo interferencia inalámbrica moderada (10 h).
 			\item Comportamiento en entornos ruidosos (5 h).
 			\item Autenticación mutua mediante mTLS (5 h).
 		\end{enumerate}
