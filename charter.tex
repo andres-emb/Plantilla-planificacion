@@ -35,6 +35,7 @@
 
 \newcommand{\driveThru}{\textit{Drive Thru}}
 \newcommand{\orderPoint}{\textit{Order Point}}
+\newcommand{\storyPoints}{\textit{Story Points}}
 
 \begin{document}
 
@@ -63,7 +64,7 @@
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
 0      & Creación del documento                                 &\fechaInicioName \\ \hline
 1      & Se completa hasta el punto 5 inclusive                & {10} de {mayo} de 2026 \\ \hline
-%2      & Se completa hasta el punto 9 inclusive
+2      & Se completa hasta el punto 9 inclusive				 & {17} de {mayo} de 2026 \\ \hline
 %		  Se puede agregar algo más \newline
 %		  En distintas líneas \newline
 %		  Así                                                    & {día} de {mes} de 202X \\ \hline
@@ -118,15 +119,15 @@ En la figura \ref{fig:driveThruView} se presenta una configuración típica de \
 \label{fig:driveThruView}
 \end{figure}
 
-Actualmente, la mayoría de las soluciones comerciales utilizadas en sistemas \driveThru{}, en particular las encargadas de la interacción entre el cliente y el personal del restaurante en el \orderPoint{}, utilizan sistemas operativos de propósito general (GPOS por sus siglas en ingles) para facilitar una rápida implementación e integración con las tecnologías de comunicación existente. Sin embargo, a medida que aumentan los requerimientos en cuanto a confiabilidad, las características de los GPOS presentan limitaciones asociadas a la calidad, ya que no están diseñados para ejecutar tareas con en un tiempo especifico lo cual afecta negativamente las aplicaciones de audio en tiempo real.
+Actualmente, la mayoría de las soluciones comerciales utilizadas en sistemas \driveThru{}, en particular las encargadas de la interacción entre el cliente y el personal del restaurante en el \orderPoint{}, utilizan sistemas operativos de propósito general (GPOS por sus siglas en inglés) para facilitar una rápida implementación e integración con las tecnologías de comunicación existentes. Sin embargo, a medida que aumentan los requerimientos en cuanto a confiabilidad, las características de los GPOS presentan limitaciones asociadas a la calidad, ya que no están diseñados para ejecutar tareas en un tiempo específico lo cual afecta negativamente las aplicaciones de audio en tiempo real.
 
 Ante estas restricciones, la industria de \textit{Quick Service Restaurant} (QSR) ha empleado arquitecturas cableadas para la transmisión de datos mediante enlaces Ethernet. Este enfoque permite mantener niveles bajos de latencia y alta confiabilidad en la transmisión; no obstante, presenta limitaciones frente a los costos de instalación, mantenimiento, flexibilidad y escalabilidad de la infraestructura, lo que limita la innovación en el ecosistema.
 
-Teniendo en cuenta este panorama, las tecnologías inalambricas tradicionales, como Bluetooth o estándares antiguos de Wi-Fi, han sido descartadas en los ecosistemas \driveThru{} debido a que presentan dificultades en entornos con alta densidad de dispositivos o elevados niveles de interferencia electromagnética. Estas condiciones afectan negativamente las métricas críticas del sistema, como la latencia, el \textit{jitter} y la pérdida de paquetes. 
+Teniendo en cuenta este panorama, las tecnologías inalámbricas tradicionales, como Bluetooth o estándares antiguos de Wi-Fi, han sido descartadas en los ecosistemas \driveThru{} debido a que presentan dificultades en entornos con alta densidad de dispositivos o elevados niveles de interferencia electromagnética. Estas condiciones afectan negativamente las métricas críticas del sistema, como la latencia, el \textit{jitter} y la pérdida de paquetes. 
 
-A pesar de lo anterior, el desarrollo de nuevas tecnologías y estándares como Wi-Fi 6 (IEEE 802.11ax) han hecho posible que existan nuevas oportunidades para su uso en sistemas de transmisión de audio con restricciones estrictas de latencia. Esto se ha logrado gracias a la implementación de mecanismos que mejoran el uso de los canales de radio frecuencia en condiciones adversas, como \textit{Orthogonal Frequency Division Multiple Access} (OFDMA) y \textit{Multiple User, Multiple Input Multiple Output} (MU-MIMO).
+A pesar de lo anterior, el desarrollo de nuevas tecnologías y estándares como Wi-Fi 6 (IEEE 802.11ax) han hecho posible que existan nuevas oportunidades para su uso en sistemas de transmisión de audio con restricciones estrictas de latencia. Esto se ha logrado gracias a la implementación de mecanismos que mejoran el uso de los canales de radiofrecuencia en condiciones adversas, como \textit{Orthogonal Frequency Division Multiple Access} (OFDMA) y \textit{Multiple User, Multiple Input Multiple Output} (MU-MIMO).
 
-Bajo este contexto, el objetivo principal del proyecto es desarrollar una plataforma embebida de transmisión y recepción de audio en tiempo real, denominada \textit{Audio Streaming Platform} (ASP), orientada a aplicaciones \driveThru{}, particularmente en el segmento de \orderPoint{} referenciado en la figura \ref{fig:driveThruView}. Para ello, el sistema deberá transmitir audio bidireccional con una latencia cercana a los 100 ms, lo que permite una comunicación fluida entre el cliente y el operador del restaurante incluso en entornos con altos niveles de ruido ambiental, como aquellos ubicados cerca a vías de alto tráfico vehicular.
+Bajo este contexto, el objetivo principal del proyecto es desarrollar una plataforma embebida de transmisión y recepción de audio en tiempo real, denominada \textit{Audio Streaming Platform} (ASP), orientada a aplicaciones \driveThru{}, particularmente en el segmento de \orderPoint{} referenciado en la figura \ref{fig:driveThruView}. Para ello, el sistema deberá transmitir audio bidireccional con una latencia cercana a los 100 ms, lo que permite una comunicación fluida entre el cliente y el operador del restaurante incluso en entornos con altos niveles de ruido ambiental, como aquellos ubicados cerca de vías de alto tráfico vehicular.
 
 La ASP utilizará \textit{Real-time Transport Protocol} (RTP) como protocolo de alto nivel y la transmisión de datos será sobre Wi-Fi 6, lo cual facilita la interoperabilidad con diferentes consumidores finales de audio como: operadores humanos, servicios en la nube o sistemas automatizados basados en inteligencia artificial. Adicionalmente, será posible configurar y administrar el dispositivo a través de MQTT y se utilizará la autenticación mutua basada en certificados (mTLS) para garantizar una conexión segura.
 
@@ -139,7 +140,7 @@ En este sentido, la arquitectura general del sistema estará compuesta por los s
 \item Consumidor final del audio, que podrá corresponder a un operador humano o a un sistema automatizado.
 \end{itemize}
 
-En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques de la arquitectura general del sistema, en la cual la ASP establece una conexión inalámbrica con el punto de acceso Wi-Fi 6 y transmite el flujo de audio utilizando RTP hacia una unidad de procesamiento central, la cual deberá redirigir el audio hacia diferentes destinatarios. Para el desarrollo del prototipo se utilizará el kit de desarrollo \href{https://www.nordicsemi.com/Products/Development-hardware/nRF7002-DK}{nRF 7002 DK} que posee un chip dedicado a la interfaz Wi-Fi 6 y puede operar en 5 GHz o 2.4 GHz; en cuanto al desarrollo del software se empleará Zephyr RTOS.
+En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques de la arquitectura general del sistema, en la cual la ASP establece una conexión inalámbrica con el punto de acceso Wi-Fi 6 y transmite el flujo de audio utilizando RTP hacia una unidad de procesamiento central, la cual deberá redirigir el audio hacia diferentes destinatarios. Para el desarrollo del prototipo se utilizará el kit de desarrollo \href{https://www.nordicsemi.com/Products/Development-hardware/nRF7002-DK}{nRF 7002 DK} que posee un chip dedicado a la interfaz Wi-Fi 6 y puede operar en 5 MHz o 2.4 MHz; en cuanto al desarrollo del software se empleará Zephyr RTOS.
 
 \begin{figure}[htpb]
 \centering 
@@ -149,7 +150,7 @@ En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques de la arqu
 \end{figure}
 
 
-Finalmente, la propuesta de valor del proyecto consiste en ofrecer una solución flexible y escalable para sistemas \textit{Drive Thru}, esto reduce la dependencia de una infraestructura cableada y facilita futuros cambios del sistema \driveThru{} a nivel físico. Además, el uso de protocolos estandarizados y tecnologías inalámbricas modernas mejora la interoperabilidad de la solución y habilita la integración futura con sistemas automatizados de atención al cliente.
+Finalmente, la propuesta de valor del proyecto consiste en ofrecer una solución flexible y escalable para sistemas \textit{Drive Thru}, lo que reduce la dependencia de una infraestructura cableada y facilita futuros cambios del sistema \driveThru{} a nivel físico. Además, el uso de protocolos estandarizados y tecnologías inalámbricas modernas mejora la interoperabilidad de la solución y habilita la integración futura con sistemas automatizados de atención al cliente.
 
 
 \section{2. Identificación y análisis de los interesados}
@@ -166,7 +167,7 @@ Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
 Cliente       & \clientename      &\empclientename	& Jurado del CESE       	\\ \hline
 Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director del Trabajo Final \\ \hline
-Usuario final & Operadores de sistemas Drive Thru & Restaurantes de comida rapida & Operador del sistema       	\\ \hline
+Usuario final & Operadores de sistemas Drive Thru & Restaurantes de comida rápida & Operador del sistema       	\\ \hline
 \end{tabularx}
 \end{table}
  
@@ -213,7 +214,7 @@ El presente proyecto no incluye:
 \begin{itemize}
 	\item Desarrollo de hardware comercial definitivo.
 	\item Ejecución de algoritmos avanzados de cancelación de ruido.
-	\item Integración con plataformas comerciales de punto de venta (POS por sus siglas en ingles).
+	\item Integración con plataformas comerciales de punto de venta (POS por sus siglas en inglés).
 	\item Desarrollo de aplicaciones móviles o interfaces gráficas avanzadas para administración del sistema.
 	\item Integración con servicios \textit{cloud} externos.
 	\item Desarrollo del componente de detección de presencia del cliente.
@@ -237,7 +238,7 @@ El presente proyecto no incluye:
 		\subitem Se dispone de un entorno adecuado para realizar las pruebas de concepto y validación de las métricas de la solución.
 		
 	\item Factibilidad técnica:
-		\subitem El SDK de Zephyr RTOS funciona de manera optima y cumple con los requisitos funcionales del proyecto.
+		\subitem El SDK de Zephyr RTOS funcionará de manera óptima y cumple con los requisitos funcionales del proyecto.
 		\subitem La red local Wi-Fi tendrá un desempeño adecuado para la transmisión de audio bidireccional con baja latencia en el entorno de pruebas.
 		\subitem Los dispositivos embebidos seleccionados tendrán capacidad de procesamiento adecuada para ejecutar simultáneamente la captura, procesamiento, reproducción y transmisión de audio en tiempo real.
 		\subitem El protocolo RTP podrá implementarse de manera efectiva y sin afectar la latencia general del sistema.
@@ -252,114 +253,221 @@ El presente proyecto no incluye:
 \end{itemize}
 
 
-
 \section{6. Requerimientos}
 \label{sec:requerimientos}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-Los requerimientos deben enumerarse y de ser posible estar agrupados por afinidad, por ejemplo:
 
 \begin{enumerate}
-	\item Requerimientos funcionales:
+	\item Requerimientos funcionales del ASP:
 		\begin{enumerate}
-			\item El sistema debe...
-			\item Tal componente debe...
-			\item El usuario debe poder...
+			\item Realizar la transmisión bidireccional (\textit{full duplex} de audio sobre RTP.
+			\item Transmitir los datos a través de Wi-Fi 6.
+			\item Capturar audio desde un micrófono.
+			\item Reproducir audio en un parlante.			
+			\item Establecer la autenticación mutua (mTLS) al conectarse al broker MQTT.
+			\item Configurar los parámetros de operación a través de MQTT.
+			\item La configuración remota debe incluir:
+				\begin{enumerate}
+					\item Identificador del dispositivo.
+					\item Dirección IP o nombre del broker MQTT.
+					\item Parámetros básicos de red.
+					\item Parámetros asociados al flujo RTP.
+				\end{enumerate}					
+			\item Reintentar la conexión Wi-Fi si hay interrupciones.
+			\item Reintentar la conexión con el broker MQTT si hay interrupciones.
+			\item Registrar eventos básicos de funcionamiento para facilitar tareas de depuración.
+		\end{enumerate}			
+
+	\item Requerimientos no funcionales:
+		\begin{enumerate}
+			\item La ASP se debe implementar sobre una arquitectura embebida con soporte para Wi-Fi 6.
+			\item La latencia de extremo a extremo del sistema no puede superar los 100 ms en condiciones normales de operación.
+			\item El sistema debe soportar la transmisión de audio bidireccional continua sin interrupciones perceptibles durante al menos 30 minutos.
+			\item La transmisión de audio debe mantener una calidad aceptable para la comunicación de voz en entornos ruidosos.
+			\item El sistema debe operar correctamente bajo condiciones moderadas de interferencia inalámbrica.
+			\item El firmware desarrollado debe ser modular, reutilizable y escalable para facilitar futuras extensiones.
+			\item La conexión MQTT debe utilizar cifrado TLS para proteger la información transmitida.
+			\item El consumo de recursos de CPU y memoria debe mantenerse dentro de las capacidades del hardware seleccionado.
+			\item El sistema debe permitir la actualización de parámetros de configuración sin necesidad de recompilar el firmware.
 		\end{enumerate}
+
+	\item Requerimientos de validación:
+		\begin{enumerate}
+			\item Realizar pruebas de latencia extremo a extremo en la transmisión de audio.
+			\item Validar el correcto funcionamiento de la transmisión RTP sobre Wi-Fi 6.
+			\item Verificar la estabilidad de la comunicación inalámbrica durante transmisiones continuas.
+			\item Comprobar el funcionamiento de la lógica de reconexión tanto a la red Wi-Fi como al broker MQTT.
+			\item Analizar el comportamiento del dispositivo en presencia de ruido e interferencia inalambrica.
+			\item Verificar que la calidad del audio transmitido sea suficiente para mantener una conversación inteligible.	
+		\end{enumerate}
+
 	\item Requerimientos de documentación:
 		\begin{enumerate}
-			\item Requerimiento 1.
-			\item Requerimiento 2 (prioridad menor)
+			\item Descripción de la arquitectura del ASP.
+			\item Guía de instalación y configuración inicial.
+			\item Especificación sobre los mensajes MQTT soportados en el sistema.
+			\item Resultados de las mediciones de latencia realizadas.
 		\end{enumerate}
-	\item Requerimiento de testing...
-	\item Requerimientos de la interfaz...
-	\item Requerimientos interoperabilidad...
-	\item etc...
 \end{enumerate}
 
-Leyendo los requerimientos se debe poder interpretar cómo será el proyecto y su funcionalidad.
-
-Indicar claramente cuál es la prioridad entre los distintos requerimientos y si hay requerimientos opcionales. 
-
-\textbf{¡¡¡No olvidarse de que los requerimientos incluyen a las regulaciones y normas vigentes!!!}
-
-Y al escribirlos seguir las siguientes reglas:
-\begin{itemize}
-	\item Ser breve y conciso (nadie lee cosas largas). 
-	\item Ser específico: no dejar lugar a confusiones.
-	\item Expresar los requerimientos en términos que sean cuantificables y medibles.
-\end{itemize}
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 \section{7. Historias de usuarios (\textit{Product backlog})}
 \label{sec:backlog}
 
-\begin{consigna}{red}
-Descripción: en esta sección se deben incluir las historias de usuarios y su ponderación (\textit{history points}). Recordar que las historias de usuarios son descripciones cortas y simples de una característica contada desde la perspectiva de la persona que desea la nueva capacidad, generalmente un usuario o cliente del sistema. La ponderación es un número entero que representa el tamaño de la historia comparada con otras historias de similar tipo.
+Para la planificación de las historias de usuarios se tuvieron en cuenta los siguientes roles:
+\begin{itemize}
 
-Se debe indicar explícitamente el criterio para calcular los \textit{story points} de cada historia.
+	\item Administrador: es el responsable técnico encargado de instalar, configurar y realizar el mantenimiento de la plataforma ASP en las instalaciones del restaurante.
+	\item Operador: corresponde al personal del restaurante que interactúa con la plataforma ASP para comunicarse con el cliente en el \driveThru.
+	\item Usuario final: es el cliente que realiza el pedido a través del ASP en el \driveThru.
+	\item Desarrollador: es el \authorname es encargado del diseño e implementación de la plataforma embebida.
+\end{itemize}
 
-El formato propuesto es: 
+
+Las historias de usuario se agruparon en torno a 4 funcionalidades y el esfuerzo que implicará cada historia se calculó con base en tres criterios:
+
+\begin{itemize}
+	\item Relevancia funcional.
+	\item Dificultad técnica.
+	\item Nivel de incertidumbre.
+\end{itemize}
+
+En este sentido cada criterio tiene un valor entre 1 y 3, y el esfuerzo total de cada tarea corresponde a la suma de dichos valores. Por lo tanto el puntaje mínimo es de 3 y el máximo es de 9.
+
 \begin{enumerate}
-\item ``Como [rol] quiero [tal cosa] para [tal otra cosa]."
 
-\textit{Story points}: 8 (complejidad: 3, dificultad: 2, incertidumbre: 3)
+	\item Comunicación de audio en tiempo real:
+
+	\begin{enumerate}
+			
+		\item Como cliente del restaurante, quiero comunicarme de manera clara y eficiente con el personal para mantener una conversación fluida y realizar mi pedido en el menor tiempo posible. \storyPoints{}: 9 (relevancia 3, dificultad 3, incertidumbre 3).
+		
+		\item Como personal del restaurante, quiero que la latencia de extremo a extremo sea a lo sumo 100 ms para evitar interrupciones en la conversación con el cliente. \storyPoints{}: 8 (relevancia 2, dificultad 3, incertidumbre 3).
+	
+		\item Como desarrollador, quiero implementar el \textit{streaming} de audio sobre RTP para garantizar la interoperabilidad con diferentes consumidores finales. \storyPoints{}: 7 (relevancia 2, dificultad 2, incertidumbre 3).
+	
+	\end{enumerate}
+
+	\item Conectividad inalámbrica:
+	
+		\begin{enumerate}
+			\item Como administrador, quiero que el ASP se comunique utilizando Wi-Fi 6 para garantizar flexibilidad en la instalación. \storyPoints{}: 5 (relevancia 3, dificultad 1, incertidumbre 1)
+			
+			\item Como administrador, quiero que el dispositivo recupere automáticamente la conexión Wi-Fi en caso de alguna interrupción para garantizar la continuidad operativa. \storyPoints{}: 4 (relevancia 2, dificultad 1, incertidumbre 1).
+			
+			\item Como administrador, quiero validar el desempeño del sistema bajo interferencia inalámbrica moderada para asegurar un funcionamiento estable en escenarios reales. \storyPoints{}: 7 (relevancia 2, dificultad 2, incertidumbre 3).
+			
+			\item (Opcional) Como administrador, quiero soportar múltiples ASP conectados simultáneamente para verificar la escalabilidad de la solución. \storyPoints{}: 7 (relevancia 3, dificultad 1, incertidumbre 3).
+
+		\end{enumerate}
+		
+		
+	\item Configuración y seguridad:
+		\begin{enumerate}
+			\item Como administrador, quiero configurar el ASP remotamente a través de MQTT para modificar parámetros de operación sin acceder físicamente al hardware. \storyPoints{}: 5 (relevancia 2, dificultad 2, incertidumbre 1).
+			
+			\item Como administrador, quiero utilizar autenticación mutua mTLS para garantizar una comunicación segura entre el ASP y el broker MQTT. \storyPoints{}: 7 (relevancia 3, dificultad 3, incertidumbre 1).
+			
+			\item Como desarrollador, quiero visualizar logs básicos de operación para facilitar tareas de depuración y validación del sistema. \storyPoints{}: 4 (relevancia 2, dificultad 1, incertidumbre 1).
+			
+			\item (Opcional) Como administrador, quiero que el firmware del dispositivo se pueda actualizar de manera remota para simplicar el proceso de despliegue de nuevas versiones del software. \storyPoints{}: 9 (relevancia 3, dificultad 3, incertidumbre 3).
+			
+		\end{enumerate}			
+	\item Validación y documentación:
+	
+		\begin{enumerate}
+			\item Como desarrollador, quiero medir la latencia de extremo a extremo del sistema de una manera eficiente y escalabre para validar el cumplimiento de los requerimientos de tiempo real y garantizar que los cambios del software no afectan el desempeño del sistema. \storyPoints{}: 9 (relevancia 3, dificultad 3, incertidumbre 3).
+			
+			\item Como desarrollador, quiero evaluar la calidad del audio transmitido en entornos ruidosos para verificar la inteligibilidad de la comunicación. \storyPoints{}: 5 (relevancia 2, dificultad 2, incertidumbre 1).
+			
+			\item Como administrador, quiero recibir la documentación técnica de la arquitectura y firmware para comprender el funcionamiento interno del sistema. \storyPoints{}: 5 (relevancia 3, dificultad 1, incertidumbre 1).
+			
+			\item Como administrador, quiero disponer de documentación de pruebas y validaciones realizadas para verificar la confiabilidad del prototipo. \storyPoints{}: 5 (relevancia 3, dificultad 1, incertidumbre 1).
+			
+			\item Como administrador, quiero contar con una guía básica de instalación y puesta en marcha para facilitar el despliegue de la solución. \storyPoints{}: 5 (relevancia 3, dificultad 1, incertidumbre 1).
+			
+		\end{enumerate}
+
 \end{enumerate}
-\end{consigna}
+
 
 \section{8. Entregables principales del proyecto}
 \label{sec:entregables}
 
-\begin{consigna}{red}
-Los entregables del proyecto son (ejemplo):
-
 \begin{itemize}
-	\item Manual de usuario.
-	\item Diagrama de circuitos esquemáticos.
-	\item Código fuente del firmware.
-	\item Diagrama de instalación.
+	\item Prototipo funcional de la plataforma ASP.
+	\item Código fuente del firmware basado en el kit de desarrollo nRF 7002 DK.
+	\item Documentación técnica sobre los resultados de las pruebas funcionales, descripción de la arquitectura, explicación del firmware y sus componentes.
+	\item Manual de usuario para la configuración a través de MQTT.
+	\item Guía de puesta en marcha, en donde se indicará los requerimientos de red.
 	\item Memoria del trabajo final.
-	\item etc...
 \end{itemize}
-\end{consigna}
+
 
 \section{9. Desglose del trabajo en tareas}
 \label{sec:wbs}
 
-\begin{consigna}{red}
-El WBS debe tener relación directa o indirecta con los requerimientos.  Son todas las actividades que se harán en el proyecto para dar cumplimiento a los requerimientos. Se recomienda mostrar el WBS mediante una lista indexada:
 
 \begin{enumerate}
-\item Grupo de tareas 1 (suma h)
-	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas h)
-	\item Tarea 3 (tantas h)
-	\end{enumerate}
-\item Grupo de tareas 2 (suma h)
-	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas h)
-	\item Tarea 3 (tantas h)
-	\end{enumerate}
-\item Grupo de tareas 3 (suma h)
-	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas h)
-	\item Tarea 3 (tantas h)
-	\item Tarea 4 (tantas h)
-	\item Tarea 5 (tantas h)
-	\end{enumerate}
+	\item Planificación del proyecto (50 h):
+		\begin{enumerate}
+			\item Definición requerimientos (10 h).
+			\item Definición plan de trabajo (10 h).
+			\item Elaboración del documento de planificación (30 h).
+		\end{enumerate}
+
+	\item Preparación del entorno de desarrollo (70 h):
+		\begin{enumerate}
+			\item Selección y compra de los componentes (4 h).
+			\item Configuración del SDK y herramientas de compilación (4 h).
+			\item Configuración del punto de acceso Wi-Fi 6 (2 h).
+			\item Montaje y pruebas iniciales (30 h).
+			\item Implementación básica de servidor RTP para pruebas de audio (30 h).
+		\end{enumerate}	
+	
+	\item Desarrollo del firmware (340 h):
+		\begin{enumerate}
+			\item Consulta de la documentación sobre Zephyr RTOS para el manejo de nRF 7002 DK (40 h).
+			\item Prueba de los ejemplos básicos del SDK para utilizar Wi-Fi (40 h).
+			\item Captura del audio desde un micrófono (20 h).
+			\item Reproducción de audio en un parlante (20 h).
+			\item Comunicación de datos sobre Wi-Fi 6 (30 h).
+			\item Reconexión automática a red Wi-Fi (10 h).
+			\item Transmisión y recepción de audio sobre RTP (40 h).
+			\item Implementación de cliente MQTT embebido (10 h).
+			\item Configuración TLS y certificados digitales (20 h).
+			\item Autenticación mutua mTLS (20 h).
+			\item Configuración remota de parámetros a través de MQTT (30 h).
+			\item Reconexión automática a broker MQTT (10 h).
+			\item Almacenamiento persistente de la configuración (30 h).
+			\item Sistema básico de logs (20 h).
+		\end{enumerate}
+	
+	\item Pruebas y validaciones (60 h):
+		\begin{enumerate}
+			\item Estabilidad del audio bidireccional (10 h).
+			\item Inteligibilidad del audio bidireccional (5 h).
+			\item Medición de latencia extremo a extremo (10 h).
+			\item Estabilidad de conexión inalámbrica (5 h).
+			\item Recuperación automática de conexión (Wi-Fi, MQTT) (10 h).
+			\item Interferencia inalámbrica (5 h).
+			\item Comportamiento bajo carga de red (5 h).
+			\item Comportamiento en entornos ruidosos (5 h).
+			\item Autenticación mutua mediante mTLS (5 h).
+		\end{enumerate}
+
+	\item Documentación (80 h):
+		\begin{enumerate}
+			\item Arquitectura técnica del sistema (10 h).
+			\item Descripción técnica del firmware (10 h).
+			\item Manual de usuario (10 h).
+			\item Resultados de pruebas de validación (10 h).
+			\item Memoria del trabajo final (40 h).
+		\end{enumerate}
 \end{enumerate}
 
-Cantidad total de horas: tantas.
+Cantidad total de horas: 600 h.
 
-\textbf{¡Importante!:} la unidad de horas es h y va separada por espacio del número. Es incorrecto escribir ``23hs".
-
-\textbf{Se recomienda que no haya ninguna tarea que lleve más de 40 h.} De ser así se recomienda dividirla en tareas de menor duración.
-
-\end{consigna}
 
 \section{10. Diagrama de Activity On Node}
 \label{sec:AoN}
