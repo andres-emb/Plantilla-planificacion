@@ -68,7 +68,7 @@ Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios 
 %		  Se puede agregar algo más \newline
 %		  En distintas líneas \newline
 %		  Así                                                    & {día} de {mes} de 202X \\ \hline
-%3      & Se completa hasta el punto 12 inclusive                & {día} de {mes} de 202X \\ \hline
+3      & Se completa hasta el punto 12 inclusive                & {24} de {mayo} de 2026 \\ \hline
 %4      & Se completa el plan	                                 & {día} de {mes} de 202X \\ \hline
 
 % Si hay más correcciones pasada la versión 4 también se deben especificar acá
@@ -89,7 +89,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en la implementación de un prototipo de un sistema de transmisión y recepción de audio. El trabajo tendrá un presupuesto preliminar estimado de 600 horas y un costo estimado de \$ 5.000 USD, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
+Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en la implementación de un prototipo de un sistema de transmisión y recepción de audio. El trabajo tendrá un presupuesto preliminar estimado de 600 horas y un costo estimado de \$ 7.235 USD, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -119,7 +119,7 @@ En la figura \ref{fig:driveThruView} se presenta una configuración típica de \
 \label{fig:driveThruView}
 \end{figure}
 
-Actualmente, la mayoría de las soluciones comerciales utilizadas en sistemas \driveThru{}, en particular las encargadas de la interacción entre el cliente y el personal del restaurante en el \orderPoint{}, utilizan sistemas operativos de propósito general (GPOS por sus siglas en inglés) para facilitar una rápida implementación e integración con las tecnologías de comunicación existentes. Sin embargo, a medida que aumentan los requerimientos en cuanto a confiabilidad, las características de los GPOS presentan limitaciones asociadas a la calidad, ya que no están diseñados para ejecutar tareas en un tiempo específico lo cual afecta negativamente las aplicaciones de audio en tiempo real.
+Actualmente, la mayoría de las soluciones comerciales utilizadas en sistemas \driveThru{}, en particular las encargadas de la interacción entre el cliente y el personal del restaurante en el \orderPoint{}, utilizan sistemas operativos de propósito general (GPOS por sus siglas en inglés) para facilitar una rápida implementación e integración con las tecnologías de comunicación existentes. Sin embargo, a medida que aumentan los requerimientos en cuanto a confiabilidad, las características de los GPOS presentan limitaciones asociadas a la calidad, ya que no están diseñados para ejecutar tareas en un tiempo específico, lo cual afecta negativamente las aplicaciones de audio en tiempo real.
 
 Ante estas restricciones, la industria de \textit{Quick Service Restaurant} (QSR) ha empleado arquitecturas cableadas para la transmisión de datos mediante enlaces Ethernet. Este enfoque permite mantener niveles bajos de latencia y alta confiabilidad en la transmisión; no obstante, presenta limitaciones frente a los costos de instalación, mantenimiento, flexibilidad y escalabilidad de la infraestructura, lo que limita la innovación en el ecosistema.
 
@@ -140,7 +140,9 @@ En este sentido, la arquitectura general del sistema estará compuesta por los s
 \item Consumidor final del audio, que podrá corresponder a un operador humano o a un sistema automatizado.
 \end{itemize}
 
-En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques de la arquitectura general del sistema, en la cual la ASP establece una conexión inalámbrica con el punto de acceso Wi-Fi 6 y transmite el flujo de audio utilizando RTP hacia una unidad de procesamiento central, la cual deberá redirigir el audio hacia diferentes destinatarios. Para el desarrollo del prototipo se utilizará el kit de desarrollo \href{https://www.nordicsemi.com/Products/Development-hardware/nRF7002-DK}{nRF 7002 DK} que posee un chip dedicado a la interfaz Wi-Fi 6 y puede operar en 5 GHz o 2.4 GHz; en cuanto al desarrollo del software se empleará Zephyr RTOS.
+En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques de la arquitectura general del sistema. En esta arquitectura, el dispositivo ASP establece una conexión inalámbrica con el punto de acceso Wi-Fi 6 y transmite el flujo de audio utilizando RTP hacia una unidad de procesamiento central, la cual deberá redirigir el audio hacia diferentes destinatarios. 
+
+Para el desarrollo del prototipo se utilizará el kit de desarrollo \href{https://www.nordicsemi.com/Products/Development-hardware/nRF7002-DK}{nRF 7002 DK} que posee un chip dedicado a la interfaz Wi-Fi 6 y puede operar en 5 GHz o 2.4 GHz; en cuanto al desarrollo del software se empleará Zephyr RTOS.
 
 \begin{figure}[htpb]
 \centering 
@@ -173,9 +175,9 @@ Usuario final & Operadores de sistemas Drive Thru & Restaurantes de comida rápi
  
 Características de los actores:
 \begin{itemize}
-	\item Responsable: El \authorname{} es el encargado del diseño de la arquitectura del sistema, desarrollo del firmware embebido y quien define los requerimientos funcionales y técnicos del sistema.
-	\item Orientador: El \supname{} es experto en el desarrollo e implementación de sistemas embebidos que utilizan Zephyr RTOS.
-	\item Usuario final: Son los operadores de sistemas \driveThru{} y requieren una solución que permita mantener una comunicación clara y continua con los clientes, minimizando interrupciones y tiempos de espera.
+	\item Responsable: el \authorname{} es el encargado del diseño de la arquitectura del sistema, desarrollo del firmware embebido y quien define los requerimientos funcionales y técnicos del sistema.
+	\item Orientador: el \supname{} es experto en el desarrollo e implementación de sistemas embebidos que utilizan Zephyr RTOS.
+	\item Usuario final: son los operadores de sistemas \driveThru{} y requieren una solución que permita mantener una comunicación clara y continua con los clientes, minimizando interrupciones y tiempos de espera.
 \end{itemize}
 
 \section{3. Propósito del proyecto}
@@ -223,14 +225,13 @@ El presente proyecto no incluye:
 \end{itemize}
 
 
-
 \section{5. Supuestos del proyecto}
 \label{sec:supuestos}
 
 \begin{itemize}
 	\item Disponibilidad de tiempo:
 		\subitem El \authorname{} cuenta con una disponibilidad de 20 horas semanales para el desarrollo del proyecto dentro de un lapso de siete meses.
-		\subitem Se espera contar con la disponibilidad de \supname{} en la asesoría de consultas técnicas relacionadas con el desarrollo del firmware basado en Zephyr RTOS.
+		\subitem Se espera contar con la disponibilidad del \supname{} en la asesoría de consultas técnicas relacionadas con el desarrollo del firmware basado en Zephyr RTOS.
 		
 	\item Disponibilidad de recursos materiales:
 		\subitem Se dispone de un kit de desarrollo nRF7002 DK para el prototipado de la solución y sus correspondientes pruebas.
@@ -283,11 +284,9 @@ El presente proyecto no incluye:
 			\item La ASP se debe implementar sobre una arquitectura embebida con soporte para Wi-Fi 6.
 			\item La latencia de extremo a extremo del sistema no puede superar los 100 ms en condiciones normales de operación.
 			\item El sistema debe soportar la transmisión de audio bidireccional continua sin interrupciones perceptibles durante al menos 30 minutos.
-			\item La transmisión de audio debe mantener una calidad aceptable para la comunicación de voz en entornos ruidosos.
-			\item El sistema debe operar correctamente bajo condiciones moderadas de interferencia inalámbrica.
 			\item El firmware desarrollado debe ser modular, reutilizable y escalable para facilitar futuras extensiones.
 			\item La conexión MQTT debe utilizar cifrado TLS para proteger la información transmitida.
-			\item El consumo de recursos de CPU y memoria debe mantenerse dentro de las capacidades del hardware seleccionado.
+			\item El consumo de recursos de CPU y memoria debe permitir operar con un 10 \% libre.
 			\item El sistema debe permitir la actualización de parámetros de configuración sin necesidad de recompilar el firmware.
 		\end{enumerate}
 
@@ -295,10 +294,11 @@ El presente proyecto no incluye:
 		\begin{enumerate}
 			\item Realizar pruebas de latencia extremo a extremo en la transmisión de audio.
 			\item Validar el correcto funcionamiento de la transmisión RTP sobre Wi-Fi 6.
-			\item Verificar la estabilidad de la comunicación inalámbrica durante transmisiones continuas.
+			\item El sistema debe soportar transmisión bidireccional continua durante al menos 30 minutos sin presentar cortes de audio superiores a 1 segundo.
 			\item Comprobar el funcionamiento de la lógica de reconexión tanto a la red Wi-Fi como al broker MQTT.
-			\item Analizar el comportamiento del dispositivo en presencia de ruido e interferencia inalambrica.
-			\item Verificar que la calidad del audio transmitido sea suficiente para mantener una conversación inteligible.	
+			\item El sistema debe mantener transmisión estable de audio en presencia de tráfico inalámbrico concurrente generado por al menos 4 dispositivos conectados al mismo punto de acceso Wi-Fi, con pérdida de paquetes inferior al 2 \%.
+			\item La transmisión de audio debe mantener un nivel de inteligibilidad suficiente para permitir conversaciones fluidas, evaluado mediante pruebas MOS (Mean Opinion Score) con una calificación promedio mínima de 3 sobre 5 en un total de 50 pruebas.
+
 		\end{enumerate}
 
 	\item Requerimientos de documentación:
@@ -344,14 +344,14 @@ En este sentido cada criterio tiene un valor entre 1 y 3, y el esfuerzo total de
 		
 		\item Como personal del restaurante, quiero que la latencia de extremo a extremo sea a lo sumo 100 ms para evitar interrupciones en la conversación con el cliente. \storyPoints{}: 8 (relevancia 2, dificultad 3, incertidumbre 3).
 	
-		\item Como desarrollador, quiero implementar el \textit{streaming} de audio sobre RTP para garantizar la interoperabilidad con diferentes consumidores finales. \storyPoints{}: 7 (relevancia 2, dificultad 2, incertidumbre 3).
+		\item Como administrador, quiero que el sistema pueda transmitir audio hacia distintos consumidores para facilitar la integración con futuras soluciones. \storyPoints{}: 7 (relevancia 2, dificultad 2, incertidumbre 3).
 	
 	\end{enumerate}
 
 	\item Conectividad inalámbrica:
 	
 		\begin{enumerate}
-			\item Como administrador, quiero que el ASP se comunique utilizando Wi-Fi 6 para garantizar flexibilidad en la instalación. \storyPoints{}: 5 (relevancia 3, dificultad 1, incertidumbre 1)
+			\item Como administrador, quiero que el sistema funcione de manera inalámbrica para simplificar la instalación y mantenimiento. \storyPoints{}: 5 (relevancia 3, dificultad 1, incertidumbre 1).
 			
 			\item Como administrador, quiero que el dispositivo recupere automáticamente la conexión Wi-Fi en caso de alguna interrupción para garantizar la continuidad operativa. \storyPoints{}: 4 (relevancia 2, dificultad 1, incertidumbre 1).
 			
@@ -364,19 +364,19 @@ En este sentido cada criterio tiene un valor entre 1 y 3, y el esfuerzo total de
 		
 	\item Configuración y seguridad:
 		\begin{enumerate}
-			\item Como administrador, quiero configurar el ASP remotamente a través de MQTT para modificar parámetros de operación sin acceder físicamente al hardware. \storyPoints{}: 5 (relevancia 2, dificultad 2, incertidumbre 1).
+			\item Como administrador, quiero configurar remotamente el sistema para modificar parámetros de operación sin necesidad de acceder físicamente al dispositivo. \storyPoints{}: 5 (relevancia 2, dificultad 2, incertidumbre 1).
 			
-			\item Como administrador, quiero utilizar autenticación mutua mTLS para garantizar una comunicación segura entre el ASP y el broker MQTT. \storyPoints{}: 7 (relevancia 3, dificultad 3, incertidumbre 1).
+			\item Como administrador, quiero que la comunicación con el sistema sea segura para evitar accesos no autorizados. \storyPoints{}: 7 (relevancia 3, dificultad 3, incertidumbre 1).
 			
-			\item Como desarrollador, quiero visualizar logs básicos de operación para facilitar tareas de depuración y validación del sistema. \storyPoints{}: 4 (relevancia 2, dificultad 1, incertidumbre 1).
+			\item Como administrador, quiero acceder a información de diagnóstico del sistema para facilitar tareas de mantenimiento y validación. \storyPoints{}: 4 (relevancia 2, dificultad 1, incertidumbre 1).
 			
-			\item (Opcional) Como administrador, quiero que el firmware del dispositivo se pueda actualizar de manera remota para simplicar el proceso de despliegue de nuevas versiones del software. \storyPoints{}: 9 (relevancia 3, dificultad 3, incertidumbre 3).
+			\item (Opcional) Como administrador, quiero actualizar remotamente el firmware del dispositivo para simplificar el mantenimiento y despliegue de nuevas funcionalidades. \storyPoints{}: 9 (relevancia 3, dificultad 3, incertidumbre 3).
 			
 		\end{enumerate}			
 	\item Validación y documentación:
 	
 		\begin{enumerate}
-			\item Como desarrollador, quiero medir la latencia de extremo a extremo del sistema de una manera eficiente y escalable para validar el cumplimiento de los requerimientos de tiempo real y garantizar que los cambios del software no afecten el desempeño del sistema. \storyPoints{}: 9 (relevancia 3, dificultad 3, incertidumbre 3).
+			\item Como operador del sistema, quiero mantener una comunicación fluida y sin retrasos perceptibles para garantizar una interacción eficiente con el cliente. \storyPoints{}: 9 (relevancia 3, dificultad 3, incertidumbre 3).
 			
 			\item Como desarrollador, quiero evaluar la calidad del audio transmitido en entornos ruidosos para verificar la inteligibilidad de la comunicación. \storyPoints{}: 5 (relevancia 2, dificultad 2, incertidumbre 1).
 			
@@ -399,7 +399,7 @@ En este sentido cada criterio tiene un valor entre 1 y 3, y el esfuerzo total de
 	\item Código fuente del firmware basado en el kit de desarrollo nRF 7002 DK.
 	\item Documentación técnica sobre los resultados de las pruebas funcionales, descripción de la arquitectura, explicación del firmware y sus componentes.
 	\item Manual de usuario para la configuración a través de MQTT.
-	\item Guía de puesta en marcha, en donde se indicará los requerimientos de red.
+	\item Guía de puesta en marcha, en donde se indicarán los requerimientos de red.
 	\item Memoria del trabajo final.
 \end{itemize}
 
@@ -421,38 +421,48 @@ En este sentido cada criterio tiene un valor entre 1 y 3, y el esfuerzo total de
 			\item Selección y compra de los componentes (4 h).
 			\item Configuración del SDK y herramientas de compilación (4 h).
 			\item Configuración del punto de acceso Wi-Fi 6 (2 h).
-			\item Montaje y pruebas iniciales (30 h).
-			\item Implementación básica de servidor RTP para pruebas de audio (30 h).
+			\item Conexión e integración de periféricos de audio (4 h).
+			\item Verificación de alimentación y conectividad del hardware (2 h).
+			\item Configuración y validación básica de interfaces I2S (6 h).
+			\item Pruebas iniciales de comunicación Wi-Fi (6 h).
+			\item Consulta requerimientos funcionales del protocolo RTP (8 h).
+			\item Implementación básica de recepción de audio en un servidor RTP (8 h).
+			\item Implementación básica de transmisión de audio en un servidor RTP  (8 h).
+			\item Integración del servidor RTP con herramientas de reproducción de audio (9 h).
+			\item Validación funcional del flujo de audio desde el servidor de prueba RTP  (5 h).
+			\item Selección y evaluación de librerías RTP/UDP compatibles con el dispositivo embebido (4 h).
 		\end{enumerate}	
 	
 	\item Desarrollo del firmware (330 h):
 		\begin{enumerate}
 			\item Consulta de la documentación sobre Zephyr RTOS para el manejo de nRF 7002 DK (40 h).
 			\item Prueba de los ejemplos básicos del SDK para utilizar Wi-Fi (40 h).
+			\item Sistema básico de logs (20 h).
 			\item Captura del audio desde un micrófono (20 h).
 			\item Reproducción de audio en un parlante (20 h).
 			\item Comunicación de datos sobre Wi-Fi 6 (20 h).
 			\item Reconexión automática a red Wi-Fi (10 h).
 			\item Transmisión y recepción de audio sobre RTP (40 h).
 			\item Implementación de cliente MQTT embebido (10 h).
+			\item Almacenamiento persistente de la configuración (30 h).
 			\item Configuración TLS y certificados digitales (20 h).
 			\item Autenticación mutua mTLS (20 h).
 			\item Configuración remota de parámetros a través de MQTT (30 h).
 			\item Reconexión automática a broker MQTT (10 h).
-			\item Almacenamiento persistente de la configuración (30 h).
-			\item Sistema básico de logs (20 h).
 		\end{enumerate}
 	
 	\item Pruebas y validaciones (60 h):
 		\begin{enumerate}
 			\item Estabilidad del audio bidireccional (10 h).
-			\item Inteligibilidad del audio bidireccional (5 h).
-			\item Medición de latencia extremo a extremo (10 h).
-			\item Estabilidad de conexión inalámbrica (5 h).
-			\item Recuperación automática de conexión (Wi-Fi, MQTT) (10 h).
-			\item Comportamiento bajo interferencia inalámbrica moderada (10 h).
-			\item Comportamiento en entornos ruidosos (5 h).
+			\item Evaluación de calidad de audio mediante pruebas MOS (Mean Opinion Score) bajo condiciones de ruido moderado (10 h).
+			\item Medición de latencia extremo a extremo (5 h).
+			\item Pérdida de paquetes en una red con al menos 4 dispositivos conectados con alto tráfico de paquetes (10 h).
+
+			\item Recuperación automática de conexión (Wi-Fi, MQTT) (5 h).
 			\item Autenticación mutua mediante mTLS (5 h).
+			\item Medición del uso de CPU durante la transmisión de audio (5 h).
+			\item Medición y análisis del consumo de memoria RAM y stack del sistema (5 h).
+			\item Validación de estabilidad del sistema bajo carga máxima de procesamiento (5 h).
 		\end{enumerate}
 
 	\item Documentación (80 h):
@@ -471,130 +481,68 @@ Cantidad total de horas: 600 h.
 \section{10. Diagrama de Activity On Node}
 \label{sec:AoN}
 
-\begin{consigna}{red}
-Armar el AoN a partir del WBS definido en la etapa anterior.
+En la figura \ref{fig:AoN} se presenta el diagrama \textit{Activity on Node} (AoN), construido a partir del desglose de tareas definido en la sección \ref{sec:wbs}. Los colores empleados permiten distinguir las diferentes fases del proyecto y la unidad temporal utilizada corresponde a horas de trabajo.
 
-Una herramienta simple para desarrollar los diagramas es el Draw.io (\url{https://app.diagrams.net/}).
-\href{https://app.diagrams.net}{Draw.io}
-
+El camino crítico, resaltado en color negro, posee una duración total estimada de 431 horas.
 
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.8\textwidth]{./Figuras/AoN.png}
+\includegraphics[width=.9\textwidth]{./Figuras/AoN.png}
 \caption{Diagrama de \textit{Activity on Node}.}
 \label{fig:AoN}
 \end{figure}
 
-Indicar claramente en qué unidades están expresados los tiempos.
-De ser necesario indicar los caminos semi críticos y analizar sus tiempos mediante un cuadro.
-Es recomendable usar colores y un cuadro indicativo describiendo qué representa cada color.
-
-\end{consigna}
-
 \section{11. Diagrama de Gantt}
 \label{sec:gantt}
 
-\begin{consigna}{red}
-Existen muchos programas y recursos \textit{online} para hacer diagramas de Gantt, entre los cuales destacamos:
+En la figura \ref{fig:GanttTable} se presenta la tabla del diagrama de Gantt, elaborado con base en los 5 grupos de actividades identificados en la sección \ref{sec:wbs}. La tabla muestra las fechas estimadas de inicio y finalización de cada etapa y se considera una dedicación semanal de 20 horas con un tiempo total de 7 meses.
 
-\begin{itemize}
-\item Planner
-\item GanttProject
-\item Trello + \textit{plugins}. En el siguiente link hay un tutorial oficial: \\ \url{https://blog.trello.com/es/diagrama-de-gantt-de-un-proyecto}
-\item Creately, herramienta online colaborativa. \\\url{https://creately.com/diagram/example/ieb3p3ml/LaTeX}
-\item Se puede hacer en latex con el paquete \textit{pgfgantt}\\ \url{http://ctan.dcc.uchile.cl/graphics/pgf/contrib/pgfgantt/pgfgantt.pdf}
-\end{itemize}
-
-Pegar acá una captura de pantalla del diagrama de Gantt, cuidando que la letra sea suficientemente grande como para ser legible. 
-Si el diagrama queda demasiado ancho, se puede pegar primero la ``tabla'' del Gantt y luego pegar la parte del diagrama de barras del diagrama de Gantt.
-
-Configurar el software para que en la parte de la tabla muestre los códigos del EDT (WBS).\\
-Configurar el software para que al lado de cada barra muestre el nombre de cada tarea.\\
-Revisar que la fecha de finalización coincida con lo indicado en el Acta Constitutiva.
-
-En la figura \ref{fig:gantt}, se muestra un ejemplo de diagrama de gantt realizado con el paquete de \textit{pgfgantt}. 
-En la plantilla pueden ver el código que lo genera y usarlo de base para construir el propio.
-
-Las fechas pueden ser calculadas utilizando alguna de las herramientas antes citadas. Sin embargo, el siguiente ejemplo
-fue elaborado utilizando 
-\href{https://docs.google.com/spreadsheets/d/1fBz8NhSpc4tkkhz3KjJCbh1nR_ltDkfEcZi4tZXduqs}{esta hoja de cálculo}.
-
-Es importante destacar que el ancho del diagrama estará dado por la longitud del texto utilizado para las tareas 
-(Ejemplo: tarea 1, tarea 2, etcétera) y el valor \textit{x unit}. Para mejorar la apariencia del diagrama, es necesario
-ajustar este valor y, quizás, acortar los nombres de las tareas.
-
-\begin{figure}[htpb]
-  \begin{center}
-    \begin{ganttchart}[
-      time slot unit=day,
-      time slot format=isodate,
-      x unit=0.038cm,
-      y unit title=0.7cm,
-      y unit chart=0.6cm,
-      milestone/.append style={xscale=4}
-      ]{2021-03-05}{2021-12-16}
-      \gantttitlecalendar*{2021-03-05}{2021-12-16}{year} \\
-      \gantttitlecalendar*{2021-03-05}{2021-12-16}{month} \\
-      \ganttgroup{Duración Total}{2021-03-05}{2021-12-16} \\
-      %%%%%%%%%%%%%%%%%Organización
-      \ganttgroup{Organización}{2021-03-05}{2021-04-16} \\
-      \ganttbar{Planificación del proyecto}{2021-03-05}{2021-04-15} \\
-      %%%%%%%%%%%%%%%%%Ejecución
-      \ganttgroup{Ejecución}{2021-04-16}{2021-10-21} \\
-      \ganttbar{Tarea 1}{2021-04-16}{2021-04-29} \\
-      \ganttbar{Tarea 2}{2021-04-30}{2021-05-13} \\
-      \ganttbar{Tarea 3}{2021-05-14}{2021-05-27} \\
-      \ganttbar{Tarea 4}{2021-05-28}{2021-07-12} \\
-      \ganttbar{Tarea 5}{2021-07-13}{2021-08-09} \\
-      \ganttbar{Tarea 6}{2021-08-10}{2021-09-23} \\
-      \ganttbar{Tarea 7}{2021-09-24}{2021-09-30} \\
-      \ganttbar{Tarea 8}{2021-10-01}{2021-10-14} \\
-      \ganttbar{Tarea 9}{2021-10-15}{2021-10-21} \\
-      % %%%%%%%%%%%%%%%%%Finalización
-      \ganttgroup{Finalización}{2021-10-22}{2021-12-16} \\
-      \ganttbar{Memoria v1}{2021-10-22}{2021-11-04} \\
-      \ganttbar{Memoria v2}{2021-11-05}{2021-11-18} \\
-      \ganttbar{Memoria final}{2021-11-19}{2021-12-02} \\
-      % La fecha del siguiente milestone es la fecha en que terminamos la memoria
-      \ganttmilestone{Enviar memoria al director}{2021-12-02} \\
-      \ganttbar{Elaborar la presentación}{2021-12-03}{2021-12-16} \\
-      \ganttmilestone{Ensayo de la presentación}{2021-12-16} \\
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \end{ganttchart}
-  \end{center}
-  \caption{Diagrama de gantt de ejemplo}
-  \label{fig:gantt}
-\end{figure}
-
-
-\begin{landscape}
 \begin{figure}[htpb]
 \centering 
-\includegraphics[height=.85\textheight]{./Figuras/Gantt-2.png}
-\caption{Ejemplo de diagrama de Gantt (apaisado).} %Modificar este título acorde.
-\label{fig:diagGantt}
+\includegraphics[width=\textwidth]{./Figuras/ASP_table.png}
+\caption{Tabla de Gantt}
+\label{fig:GanttTable}
 \end{figure}
 
-\end{landscape}
+Debido a la cantidad de tareas definidas para el proyecto, el diagrama de Gantt se presenta dividido en 4 figuras: \ref{fig:GanttBar}, \ref{fig:GanttBAr1}, \ref{fig:GanttBAr2}, \ref{fig:GanttBAr3}. Esta organización permite visualizar claramente las relaciones y dependencias entre cada tarea y la dedicación estimada de cada actividad, de acuerdo con la planeación definida en la sección \ref{sec:AoN}.
 
-\end{consigna}
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=\textwidth]{./Figuras/ASP_general.png}
+\caption{Diagrama de Gantt general}
+\label{fig:GanttBar}
+\end{figure}
 
+
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=\textwidth]{./Figuras/ASP_1.png}
+\caption{Diagrama de Gantt. Tareas 1 a 2}
+\label{fig:GanttBAr1}
+\end{figure}
+
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=\textwidth]{./Figuras/ASP_2.png}
+\caption{Diagrama de Gantt. Tareas 3 a 4}
+\label{fig:GanttBAr2}
+\end{figure}
+
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=\textwidth]{./Figuras/ASP_3.png}
+\caption{Diagrama de Gantt. Tarea 5}
+\label{fig:GanttBAr3}
+\end{figure}
 
 \section{12. Presupuesto detallado del proyecto}
 \label{sec:presupuesto}
 
-\begin{consigna}{red}
-Si el proyecto es complejo entonces separarlo en partes:
-\begin{itemize}
-	\item Un total global, indicando el subtotal acumulado por cada una de las áreas.
-	\item El desglose detallado del subtotal de cada una de las áreas.
-\end{itemize}
 
-IMPORTANTE: No olvidarse de considerar los COSTOS INDIRECTOS.
+En la siguiente tabla se presenta la estimación de costos del proyecto, se incluyen los costos directos e indirectos asociados al desarrollo e implementación del ASP. Los costos individuales se expresan en dólares estadounidenses (USD), mientras que el costo total del proyecto se presenta en USD y en pesos argentinos (ARS).
 
-Incluir la aclaración de si se emplea como moneda el peso argentino (ARS) o si se usa moneda extranjera (USD, EUR, etc). Si es en moneda extranjera se debe indicar la tasa de conversión respecto a la moneda local en una fecha dada.
+Para la conversión de moneda se utilizó una tasa de cambio de USD \$ 1 = ARS \$ 1.405,6, correspondiente al día 24 de mayo de 2026.
 
-\end{consigna}
 
 \begin{table}[htpb]
 \centering
@@ -607,24 +555,36 @@ Descripción &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
- &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
- &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
+
+Kit de desarrollo nRF 7002 DK &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{ \$ 56} &
+  \multicolumn{1}{c|}{ \$ 56} \\ \hline
+Microfono para captura de audio &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{\$ 10} &
+  \multicolumn{1}{c|}{\$ 10} \\ \hline
+Parlante para reproducción de audio &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{\$ 10} &
+  \multicolumn{1}{c|}{\$ 10} \\ \hline
+Componentes electrónicos adicionales &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{\$ 10} &
+  \multicolumn{1}{c|}{\$ 10} \\ \hline
+Computadora para desarrollo &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{\$ 300} &
+  \multicolumn{1}{c|}{\$ 300} \\ \hline  
+Hora de trabajo ingeniería &
+  \multicolumn{1}{c|}{600} &
+  \multicolumn{1}{c|}{\$ 10} &
+  \multicolumn{1}{c|}{\$ 6.000} \\ \hline
+  
+
+\multicolumn{3}{|c|}{SUBTOTAL en USD} &
+  \multicolumn{1}{c|}{\$ 6.386} \\ \hline
+
 \rowcolor[HTML]{C0C0C0} 
 \multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}COSTOS INDIRECTOS} \\ \hline
 \rowcolor[HTML]{C0C0C0} 
@@ -632,24 +592,24 @@ Descripción &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
   \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
+Alquiler oficina de trabajo mensual &
+  \multicolumn{1}{c|}{7} &
+  \multicolumn{1}{c|}{ \$ 30} &
+  \multicolumn{1}{c|}{ \$ 210} \\ \hline
+Imprevistos (10 \% de costos directos) &
+  \multicolumn{1}{c|}{1} &
+  \multicolumn{1}{c|}{ \$ 639} &
+  \multicolumn{1}{c|}{ \$ 639} \\ \hline
+\multicolumn{3}{|c|}{SUBTOTAL en USD} &
+  \multicolumn{1}{c|}{\$ 849} \\ \hline
 \rowcolor[HTML]{C0C0C0}
-\multicolumn{3}{|c|}{TOTAL} &
-   \\ \hline
+\multicolumn{3}{|c|}{TOTAL en USD} & 
+	\multicolumn{1}{c|}{\$ 7.235} \\ \hline
+\rowcolor[HTML]{C0C0C0}
+\multicolumn{3}{|c|}{TOTAL en ARS} & 
+	\multicolumn{1}{c|}{\$ 10'169.545} \\ \hline
 \end{tabularx}%
+
 \end{table}
 
 
@@ -755,7 +715,7 @@ En cambio, las acciones de validación suelen considerar al entregable como ``ca
 Establecer las pautas de trabajo para realizar una reunión final de evaluación del proyecto, tal que contemple las siguientes actividades:
 
 \begin{itemize}
-	\item Pautas de trabajo que se seguirán para analizar si se respetó el Plan de Proyecto original:\\
+	\item Pautas de trabajo que se seguirán para analizar si se respetó el P'lan de Proyecto original:\\
 	 - Indicar quién se ocupará de hacer esto y cuál será el procedimiento a aplicar. 
 	\item Identificación de las técnicas y procedimientos útiles e inútiles que se emplearon, los problemas que surgieron y cómo se solucionaron:\\
 	 - Indicar quién se ocupará de hacer esto y cuál será el procedimiento para dejar registro.
