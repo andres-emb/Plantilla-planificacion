@@ -746,29 +746,102 @@ Mitigación: realizar un seguimiento semanal del avance del proyecto a partir de
 \section{14. Gestión de la calidad}
 \label{sec:calidad}
 
-\begin{consigna}{red}
-Elija al menos diez requerimientos que a su criterio sean los más importantes/críticos/que aportan más valor y para cada uno de ellos indique las acciones de verificación y validación que permitan asegurar su cumplimiento.
-
 \begin{itemize} 
-\item Req \#1: copiar acá el requerimiento con su correspondiente número.
+	\item Req \#1.1. 
+	\begin{itemize}
+		\item Verificación: 
+		\item Validación: 
+	\end{itemize}
+	
+	\item Req \#1.1. Realizar la transmisión bidireccional (full duplex ) de audio sobre RTP.
+	\begin{itemize}
+		\item Verificación: realizar pruebas con Wireshark para capturar el tráfico RTP bidireccional.
+		\item Validación: entablar una conversación entre dos usuarios utilizando el sistema ASP y el servidor de prueba RTP para comprobar que en ambos extremos se puede hablar y escuchar simultáneamente sin interrupciones.
+	\end{itemize}
+	
+	\item Req \#1.2. Transmitir los datos a través de Wi-Fi 6. 
+	\begin{itemize}
+		\item Verificación: revisar la configuración del dispositivo y verificar la asociación con un punto de acceso IEEE 802.11ax. Analizar los parámetros de conexión reportados por el controlador Wi-Fi.
+		\item Validación: comprobar que el sistema transmite audio correctamente utilizando una red Wi-Fi 6 como único medio de comunicación.
+	\end{itemize}
+	
+	\item Req \#1.3. Capturar audio desde un micrófono.
+	\begin{itemize}
+		\item Verificación: registrar muestras digitales y comprobar que corresponden a la señal aplicada al micrófono.
+		\item Validación: solicitar al usuario emitir comandos de voz y verificar que el sistema los captura correctamente.
+	\end{itemize}
+	
+	\item Req \#1.4. Reproducir audio en un parlante.
+	\begin{itemize}
+		\item Verificación: comprobar mediante osciloscopio la correcta generación del flujo de audio hacia la interfaz de salida.
+		\item Validación: solicitar al usuario emitir comandos de voz y verificar que el sistema los captura correctamente.
+	\end{itemize}
+	
+	\item Req \#1.4. Configurar los parámetros de operación a través de MQTT.
+	\begin{itemize}
+		\item Verificación: enviar mensajes MQTT de configuración y comprobar que los parámetros son almacenados correctamente en memoria persistente a traves de logs.
+		\item Validación: solicitar al administrador modificar parámetros operativos sin acceder físicamente al dispositivo y verificar que los cambios son aplicados correctamente.
+	\end{itemize}
+	
+	\item Req \#2.2. La latencia de extremo a extremo del sistema no puede superar los 100 ms en condiciones normales de operación.
+	\begin{itemize}
+		\item Verificación: medir la latencia mediante marcas temporales en transmisión y recepción durante múltiples pruebas. Obtener el valor promedio, mínimo y máximo de la latencia.
+		\item Validación: entablar una conversación entre el cliente y operador para comprobar que no hay retrasos significativos que afecten fluidez en la comunicación.
+	\end{itemize}
+	
+	\item Req \#2.3. El sistema debe soportar la transmisión de audio bidireccional continua sin interrupciones perceptibles durante al menos 30 minutos.
+	\begin{itemize}
+		\item Verificación: analizar las señales de audio obtenidas en cada extremo del sistema durante 30 minutos y verificar que no existen cortes mayores a 1 segundo.
+		\item Validación: realizar una conversación simulada durante 30 minutos y verificar que el cliente u operador no perciban interrupciones significativas.
+	\end{itemize}
+	
+	\item Req \#2.6. El consumo de recursos de CPU y memoria debe permitir operar con un 10 \% libre.
+	\begin{itemize}
+		\item Verificación: monitorear el uso de CPU y memoria en escenarios de maxima carga a traves de las herramientas de debug de Zephyr RTOS.
+		\item Validación: ejecutar simultáneamente las funcionalidades principales del sistema (audio RTP, Wi-Fi y MQTT) para comprobar que el desempeño del sistema sea estable.
+	\end{itemize}
+	
+	\item Req \#3.4. Comprobar el funcionamiento de la lógica de reconexión tanto a la red Wi-Fi como al broker MQTT.
+	\begin{itemize}
+		\item Verificación: desconectar temporalmente el punto de acceso, medir el tiempo que el sistema tarda en recuperar la conexión de manera automática.
+		\item Validación: simular una perdida temporal de conectividad durante una conversación y confirmar que el dispositivo es puede retomar la conexión de manera automática y sin afectar la operación general.
+	\end{itemize}
 
-\begin{itemize}
-	\item Verificación para confirmar si se cumplió con lo requerido antes de mostrar el sistema al cliente. Detallar.
-	\item Validación con el cliente para confirmar que está de acuerdo en que se cumplió con lo requerido. Detallar. 
+	\item Req \#3.5. El sistema debe mantener transmisión estable de audio en presencia de tráfico inalámbrico concurrente generado por al menos 4 dispositivos conectados al mismo punto de acceso Wi-Fi, con pérdida de paquetes inferior al 2 \%.
+	\begin{itemize}
+		\item Verificación: con almenos 4 dispositivos conectados a la misma red, establecer una conversación durante 10 minutos y medir la perdida de paquetes RTP, la perdida promedio debe ser menor al 2\% durante la prueba.
+		\item Validación: simular la operación del sistema en condiciones de alto trafico en la red inalámbrica, iniciar una conversación y comprobar que tanto el cliente como el operador perciben la comunicación estable y no hay interrupciones significativas en el audio que impidan la operación.
+	\end{itemize}		
+	
 \end{itemize}
-
-\end{itemize}
-
-Tener en cuenta que en este contexto se pueden mencionar simulaciones, cálculos, revisión de hojas de datos, consulta con expertos, mediciones, etc.  
-
-Las acciones de verificación suelen considerar al entregable como ``caja blanca'', es decir se conoce en profundidad su funcionamiento interno.  
-
-En cambio, las acciones de validación suelen considerar al entregable como ``caja negra'', es decir, que no se conocen los detalles de su funcionamiento interno.
-
-\end{consigna}
 
 \section{15. Procesos de cierre}    
 \label{sec:cierre}
+
+\begin{itemize}
+	\item Pautas de trabajo que se seguirán para analizar si se respetó el Plan de Proyecto original:
+	\begin{itemize}
+		\item Responsable: \authorname
+		\item Se realizará una reunión final de cierre con el director del Trabajo Final para revisar el cumplimiento de los objetivos, alcance, requerimientos, entregables, cronograma y presupuesto definidos en el presente Plan de Proyecto. Se utilizaran como insumos los resultados de las pruebas de validación, la documentación generada durante el desarrollo y los registros de avance del proyecto. Finalmente, se analizarán las diferencias entre la planificación inicial y su ejecución, para identificar las causas de las diferencias en tiempo, costo o alcance.
+	\end{itemize}
+	
+	\item Identificación de las técnicas y procedimientos útiles e inútiles que se emplearon, los problemas que surgieron y cómo se solucionaron:
+	\begin{itemize}
+		\item Responsable: \authorname
+		\item Se registrarán las técnicas, herramientas y procedimientos utilizados durante el desarrollo del proyecto, en particular, se analizará la experiencia obtenida en el uso de Zephyr RTOS, la implementación de RTP sobre plataformas embebidas, la utilización de Wi-Fi 6 para transmisión de audio en tiempo real y la configuración remota mediante MQTT. También se documentarán los principales problemas encontrados, las acciones correctivas implementadas y las recomendaciones para futuros desarrollos similares.
+	\end{itemize}
+	
+	\item Indicar quién organizará el acto de agradecimiento a todos los interesados, y en especial al equipo de trabajo y colaboradores:
+	\begin{itemize}
+		\item Responsable: \authorname
+		\item Durante la presentación final del Trabajo Final se realizará un reconocimiento formal al director del Trabajo Final, a las autoridades de la Carrera de Especialización en Sistemas Embebidos y a todas las personas que colaboraron directa o indirectamente en el desarrollo del proyecto.
+	\end{itemize}
+\end{itemize}
+
+
+
+realizará una reunión de cierre entre el responsable del proyecto y el director del Trabajo Final con el objetivo de evaluar el cumplimiento de los objetivos planteados, analizar los resultados obtenidos y documentar las lecciones aprendidas durante el desarrollo.
+
 
 \begin{consigna}{red}
 Establecer las pautas de trabajo para realizar una reunión final de evaluación del proyecto, tal que contemple las siguientes actividades:
