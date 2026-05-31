@@ -1,3 +1,4 @@
+% !TeX spellcheck = es
 \documentclass[
 11pt, % The default document font size, options: 10pt, 11pt, 12pt
 %codirector, % Uncomment to add a codirector to the title page
@@ -89,7 +90,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en la implementación de un prototipo de un sistema de transmisión y recepción de audio. El trabajo tendrá un presupuesto preliminar estimado de 600 horas y un costo estimado de \$ 7.235 USD, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
+Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en la implementación de un prototipo de un sistema de transmisión y recepción de audio. El trabajo tendrá un presupuesto preliminar estimado de 600 horas y un costo estimado de USD \$ 7.235, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -411,8 +412,8 @@ En este sentido cada criterio tiene un valor entre 1 y 3, y el esfuerzo total de
 \begin{enumerate}
 	\item Planificación del proyecto (60 h):
 		\begin{enumerate}
-			\item Definición requerimientos (10 h).
-			\item Definición plan de trabajo (10 h).
+			\item Definición de requerimientos (10 h).
+			\item Definición del plan de trabajo (10 h).
 			\item Elaboración del documento de planificación (40 h).
 		\end{enumerate}
 
@@ -425,7 +426,7 @@ En este sentido cada criterio tiene un valor entre 1 y 3, y el esfuerzo total de
 			\item Verificación de alimentación y conectividad del hardware (2 h).
 			\item Configuración y validación básica de interfaces I2S (6 h).
 			\item Pruebas iniciales de comunicación Wi-Fi (6 h).
-			\item Consulta requerimientos funcionales del protocolo RTP (8 h).
+			\item Consulta de requerimientos funcionales del protocolo RTP (8 h).
 			\item Implementación básica de recepción de audio en un servidor RTP (8 h).
 			\item Implementación básica de transmisión de audio en un servidor RTP  (8 h).
 			\item Integración del servidor RTP con herramientas de reproducción de audio (9 h).
@@ -483,7 +484,16 @@ Cantidad total de horas: 600 h.
 
 En la figura \ref{fig:AoN} se presenta el diagrama \textit{Activity on Node} (AoN), construido a partir del desglose de tareas definido en la sección \ref{sec:wbs}. Los colores empleados permiten distinguir las diferentes fases del proyecto y la unidad temporal utilizada corresponde a horas de trabajo.
 
-El camino crítico, resaltado en color negro, posee una duración total estimada de 431 horas.
+La relación entre fases del proyecto y colores es:
+\begin{itemize}
+	\item Planificación del proyecto: azul.
+	\item Preparación del entorno de desarrollo: verde.
+	\item Desarrollo del firmware: naranja.
+	\item Pruebas y validaciones: morado.
+	\item Documentación: amarillo.
+\end{itemize}
+
+El camino crítico, resaltado en color negro y con un grosor mas grande, posee una duración total estimada de 431 horas.
 
 \begin{figure}[htpb]
 \centering 
@@ -495,7 +505,7 @@ El camino crítico, resaltado en color negro, posee una duración total estimada
 \section{11. Diagrama de Gantt}
 \label{sec:gantt}
 
-En la figura \ref{fig:GanttTable} se presenta la tabla del diagrama de Gantt, elaborado con base en los 5 grupos de actividades identificados en la sección \ref{sec:wbs}. La tabla muestra las fechas estimadas de inicio y finalización de cada etapa y se considera una dedicación semanal de 20 horas con un tiempo total de 7 meses.
+En la figura \ref{fig:GanttTable} se presenta la tabla del diagrama de Gantt, elaborado con base en los 5 grupos de actividades identificados en la sección \ref{sec:wbs}. La tabla muestra las fechas estimadas de inicio y finalización de cada etapa y se considera una dedicación semanal de 20 horas con un tiempo total de 8 meses (abril a diciembre).
 
 \begin{figure}[htpb]
 \centering 
@@ -539,7 +549,7 @@ Debido a la cantidad de tareas definidas para el proyecto, el diagrama de Gantt 
 \label{sec:presupuesto}
 
 
-En la siguiente tabla se presenta la estimación de costos del proyecto, se incluyen los costos directos e indirectos asociados al desarrollo e implementación del ASP. Los costos individuales se expresan en dólares estadounidenses (USD), mientras que el costo total del proyecto se presenta en USD y en pesos argentinos (ARS).
+En la siguiente tabla se presenta la estimación de costos del proyecto que incluye los costos directos e indirectos asociados al desarrollo e implementación del ASP. Los costos individuales se expresan en dólares estadounidenses (USD), mientras que el costo total del proyecto se presenta en USD y en pesos argentinos (ARS).
 
 Para la conversión de moneda se utilizó una tasa de cambio de USD \$ 1 = ARS \$ 1.405,6, correspondiente al día 24 de mayo de 2026.
 
@@ -560,7 +570,7 @@ Kit de desarrollo nRF 7002 DK &
   \multicolumn{1}{c|}{1} &
   \multicolumn{1}{c|}{ \$ 56} &
   \multicolumn{1}{c|}{ \$ 56} \\ \hline
-Microfono para captura de audio &
+Micrófono para captura de audio &
   \multicolumn{1}{c|}{1} &
   \multicolumn{1}{c|}{\$ 10} &
   \multicolumn{1}{c|}{\$ 10} \\ \hline
@@ -576,7 +586,7 @@ Computadora para desarrollo &
   \multicolumn{1}{c|}{1} &
   \multicolumn{1}{c|}{\$ 300} &
   \multicolumn{1}{c|}{\$ 300} \\ \hline  
-Hora de trabajo ingeniería &
+Hora de trabajo de ingeniería &
   \multicolumn{1}{c|}{600} &
   \multicolumn{1}{c|}{\$ 10} &
   \multicolumn{1}{c|}{\$ 6.000} \\ \hline
@@ -607,7 +617,7 @@ Imprevistos (10 \% de costos directos) &
 	\multicolumn{1}{c|}{\$ 7.235} \\ \hline
 \rowcolor[HTML]{C0C0C0}
 \multicolumn{3}{|c|}{TOTAL en ARS} & 
-	\multicolumn{1}{c|}{\$ 10'169.545} \\ \hline
+	\multicolumn{1}{c|}{\$ 10.169.516} \\ \hline
 \end{tabularx}%
 
 \end{table}
@@ -616,73 +626,122 @@ Imprevistos (10 \% de costos directos) &
 \section{13. Gestión de riesgos}
 \label{sec:riesgos}
 
-\begin{consigna}{red}
-a) Identificación de los riesgos (al menos cinco) y estimación de sus consecuencias:
- 
-Riesgo 1: detallar el riesgo (riesgo es algo que si ocurre altera los planes previstos de forma negativa)
-\begin{itemize}
-	\item Severidad (S): mientras más severo, más alto es el número (usar números del 1 al 10).\\
-	Justificar el motivo por el cual se asigna determinado número de severidad (S).
-	\item Probabilidad de ocurrencia (O): mientras más probable, más alto es el número (usar del 1 al 10).\\
-	Justificar el motivo por el cual se asigna determinado número de (O). 
-\end{itemize}   
+a) Identificación de los riesgos y estimación de sus consecuencias:
 
-Riesgo 2:
-\begin{itemize}
-	\item Severidad (S): X.\\
-	Justificación...
-	\item Ocurrencia (O): Y.\\
-	Justificación...
-\end{itemize}
+Riesgo 1: latencia de extremo a extremo es mayor a 100 ms.
 
-Riesgo 3:
 \begin{itemize}
-	\item Severidad (S):  X.\\
-	Justificación...
-	\item Ocurrencia (O): Y.\\
-	Justificación...
+	\item Severidad (S): 10 \\
+	Afectaría el cumplimiento de uno de los requisitos fundamentales del prototipo con el cual se garantiza la comunicación eficiente entre el cliente y el personal del restaurante.
+	\item Probabilidad de ocurrencia (O): 7 \\
+	Aunque los protocolos de red elegidos están diseñados para baja latencia, factores externos como el procesamiento de audio, congestiones de red y el rendimiento de hardware pueden afectar el desempeño de la solución.
 \end{itemize}
 
 
-b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
+Riesgo 2: dificultad en la implementación del protocolo RTP
+\begin{itemize}
+	\item Severidad (S): 8 \\
+	RTP es el mecanismo principal de transporte de audio del sistema, el retraso en su implementación afectaría el cumplimiento de las funciones criticas de transmisión y recepción de audio.
+	\item Probabilidad de ocurrencia (O):  7 \\
+	No se cuenta con experiencia previa en la implementación de este protocolo en plataformas embebidas.
+\end{itemize}
+
+
+Riesgo 3: problemas en la implementación de seguridad en MQTT con mTLS
+\begin{itemize}
+	\item Severidad (S): 7 \\
+	La incapacidad para establecer una comunicación a traves de mTLS limitá la seguridad del sistema ante terceros al no disponer de un mecanismo de validación en la red MQTT.
+	\item Probabilidad de ocurrencia (O): 5 \\
+	Pueden existir limitaciones en cuanto a poder de computo para gestionar, validar y actualizar los certificados CA para lograr la implementación de mTLS.
+\end{itemize}
+
+Riesgo 4: limitaciones de CPU o memoria del nRF7002 DK
+
+\begin{itemize}
+	\item Severidad (S): 8 \\
+	El dispositivo podría no soportar simultaneamente la captura y transmisión de audio, comunicación por MQTT y mTLS.
+	\item Probabilidad de ocurrencia (O): 4 \\
+	El kit de desarrollo nRF7002 DK fue diseñado para cumplir con una demanda de procesamiento moderada en ambientes IoT, sin embargo el uso combinado de audio en tiempo real, Wi-Fi y seguridad criptográfica incrementa la carga del sistema.
+\end{itemize}
+
+Riesgo 5: disponibilidad insuficiente de tiempo del responsable del proyecto
+
+\begin{itemize}
+	\item Severidad (S): 7 \\
+	El proyecto depende de una sola persona para el desarrollo, integración, validación y documentación. 
+	
+	\item Probabilidad de ocurrencia (O): 6 \\
+	La planificación considera 20 horas de trabajo semanalmente, durante un aproximado de 8 meses, por lo que cualquier imprevisto personal o laboral puede afectar el avance el proyecto. 
+\end{itemize}
+
+b) Tabla de gestión de riesgos: (El RPN se calcula como RPN = S x O)
 
 \begin{table}[htpb]
-\centering
-\begin{tabularx}{\linewidth}{@{}|X|c|c|c|c|c|c|@{}}
-\hline
-\rowcolor[HTML]{C0C0C0} 
-Riesgo & S & O & RPN & S* & O* & RPN* \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-\end{tabularx}%
+	\centering
+	\begin{tabularx}{\linewidth}{@{}|X|c|c|c|c|c|c|@{}}
+		\hline
+		\rowcolor[HTML]{C0C0C0} 
+		Riesgo & S & O & RPN & S* & O* & RPN* \\ \hline
+		Latencia de extremo a extremo es mayor a 100 ms & 10  & 7  & 70 & 10 & 5 & 50     \\ \hline
+		Dificultad en la implementación del protocolo RTP & 8  & 7  & 56 & 8 & 5   & 40     \\ \hline
+		Problemas en la implementación de seguridad en MQTT con mTLS & 7  & 6  & 42    & 6  & 3   & 18     \\ \hline
+		Limitaciones de CPU o memoria del nRF7002 DK & 8  & 4  & 32    &    &    &      \\ \hline
+		Disponibilidad insuficiente de tiempo del responsable del proyecto
+		& 7  & 6  & 42  & 7   & 4   & 28     \\ \hline
+	\end{tabularx}%
 \end{table}
+Criterio adoptado:
 
-Criterio adoptado: 
-
-Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a...
+Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a 40.
 
 Nota: los valores marcados con (*) en la tabla corresponden luego de haber aplicado la mitigación.
 
-c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido:
- 
-Riesgo 1: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
-  Nueva asignación de S y O, con su respectiva justificación:
-  \begin{itemize}
-	\item Severidad (S*): mientras más severo, más alto es el número (usar números del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de severidad (S).
-	\item Probabilidad de ocurrencia (O*): mientras más probable, más alto es el número (usar del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de (O).
-	\end{itemize}
+c) Plan de mitigación:
 
-Riesgo 2: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
- 
-Riesgo 3: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
+Riesgo 1: latencia de extremo a extremo es mayor a 100 ms.
 
-\end{consigna}
+Mitigación: validación temprana de la arquitectura del firmware para identificar oportunamente cuellos de botella en el procesamiento del audio a través de pruebas incrementales de transmisión sobre Wi-Fi 6 y RTP.
 
+\begin{itemize}
+	\item Severidad (S*): 10 \\
+	Afectaría de igual manera el cumplimiento de uno de los requisitos fundamentales del prototipo con el cual se garantiza la comunicación eficiente entre el cliente y el personal del restaurante.
+	\item Probabilidad de ocurrencia (O*): 5 \\
+	La ejecución de pruebas de latencia constantemente permite garantizar que el desarrollo avanza en la dirección correcta, y que a medida que se añaden nuevas funcionalidades se respeta la restricción de latencia.
+\end{itemize}
+
+
+Riesgo 2: dificultad en la implementación del protocolo RTP
+
+Mitigación: desarrollar una implementación básica de transmisión y recepción de audio utilizando un servidor RTP externo antes de integrar el protocolo en la plataforma embebida. Además, se realizará una evaluación previa de librerías RTP compatibles con Zephyr RTOS y se destinará tiempo específico para el estudio de la documentación técnica de RTP.
+\begin{itemize}
+	\item Severidad (S*): 8 \\
+	La severidad se mantiene puesto que continúa siendo el mecanismo principal de transporte de audio del sistema.
+	\item Probabilidad de ocurrencia (O):  5 \\
+	La implementación progresiva de RTP, las pruebas preliminares y el análisis anticipado de librerías compatibles reducen considerablemente la incertidumbre técnica asociada al protocolo.
+\end{itemize}
+
+
+Riesgo 3: problemas en la implementación de seguridad en MQTT con mTLS
+
+Mitigación: reducir el alcance del proyecto y utilizar solo TLS para cifrar la comunicación a través de MQTT sin validar el certificado presentado por el broker.
+\begin{itemize}
+	\item Severidad (S*): 6 \\
+	La incapacidad para establecer comunicaciones seguras mediante TLS impediría cumplir los requerimientos de seguridad definidos para la administración remota del sistema, exponiendo la información transmitida a accesos no autorizados en la red.
+	\item Probabilidad de ocurrencia (O*): 3 \\
+	La configuración de TLS en sistemas embebidos puede presentar dificultades asociadas a la gestión de certificados, integración con librerías criptográficas y limitaciones de memoria o procesamiento del dispositivo.
+\end{itemize}
+
+Riesgo 5: disponibilidad insuficiente de tiempo del responsable del proyecto
+
+Mitigación: realizar un seguimiento semanal del avance del proyecto a partir del diagrama de Gantt definido. Las actividades críticas del camino crítico tendrán prioridad sobre funcionalidades opcionales.
+
+\begin{itemize}
+	\item Severidad (S*): 7 \\
+	La severidad se mantiene igual debido a que solo hay una persona en cargada del desarrollo, integración, validación y documentación del proyecto.
+	
+	\item Probabilidad de ocurrencia (O*): 4 \\
+	La planificación detallada de actividades, el monitoreo periódico del avance y la priorización de tareas críticas permiten reducir la probabilidad de incumplimiento en los plazos establecidos. 
+\end{itemize}
 
 \section{14. Gestión de la calidad}
 \label{sec:calidad}
